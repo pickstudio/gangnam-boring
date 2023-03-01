@@ -1,6 +1,4 @@
-import { GBText } from "@/components/base";
 import GBLayout from "@/components/base/GBLayout";
-import { Icons } from "@/public/icon";
 import Head from "next/head";
 import React from "react";
 import styled from "styled-components";

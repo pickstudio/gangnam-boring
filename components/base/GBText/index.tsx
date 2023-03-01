@@ -1,7 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface IProps {
   children: string | string[] | React.ReactNode;
+  fontFamily?: 'EF_jejudoldam' | 'NanumSquareNeo';
   display01?: boolean;
   display02?: boolean;
   headline01?: boolean;
@@ -22,6 +23,7 @@ interface IProps {
 
 function GBText({
   children,
+  fontFamily = 'NanumSquareNeo',
   display01,
   display02,
   headline01,
@@ -37,143 +39,144 @@ function GBText({
   caption02,
   caption03,
   caption04,
-  color,
+  color
 }: IProps) {
   const style: React.CSSProperties = React.useMemo(() => {
     const defaultStyle = {
       padding: 0,
       margin: 0,
       color: color,
-      whiteSpace: "pre-wrap",
+      whiteSpace: 'pre-wrap'
     } as React.CSSProperties;
     if (display01)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "2.25rem",
-        lineHeight: "2.625rem",
+        fontFamily: fontFamily,
+        fontSize: '2.25rem',
+        lineHeight: '2.625rem',
         fontWeight: 600,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (display02)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "2rem",
-        lineHeight: "2.5rem",
+        fontFamily: fontFamily,
+        fontSize: '2rem',
+        lineHeight: '2.5rem',
         fontWeight: 600,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (headline01)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1.5rem",
-        lineHeight: "2.25rem",
+        fontFamily: fontFamily,
+        fontSize: '1.5rem',
+        lineHeight: '2.25rem',
         fontWeight: 600,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (headline02)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1.5rem",
-        lineHeight: "2.25rem",
+        fontFamily: fontFamily,
+        fontSize: '1.5rem',
+        lineHeight: '2.25rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (title01)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1.25rem",
-        lineHeight: "2rem",
+        fontFamily: fontFamily,
+        fontSize: '1.25rem',
+        lineHeight: '2rem',
         fontWeight: 600,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (title02)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1.25rem",
-        lineHeight: "2rem",
+        fontFamily: fontFamily,
+        fontSize: '1.25rem',
+        lineHeight: '2rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (subHeadline01)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1rem",
-        lineHeight: "1.5rem",
+        fontFamily: fontFamily,
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
         fontWeight: 600,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (body01)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1rem",
-        lineHeight: "1.5rem",
+        fontFamily: fontFamily,
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (body02)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "1rem",
-        lineHeight: "1.5rem",
+        fontFamily: fontFamily,
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
         fontWeight: 400,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (body03)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "0.875rem",
-        lineHeight: "1.25rem",
+        fontFamily: fontFamily,
+        fontSize: '0.875rem',
+        lineHeight: '1.25rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (body04)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "0.875rem",
-        lineHeight: "1.25rem",
+        fontFamily: fontFamily,
+        fontSize: '0.875rem',
+        lineHeight: '1.25rem',
         fontWeight: 400,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (caption01)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "0.75rem",
-        lineHeight: "1.25rem",
+        fontFamily: fontFamily,
+        fontSize: '0.75rem',
+        lineHeight: '1.25rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (caption02)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "0.75rem",
-        lineHeight: "1.25rem",
+        fontFamily: fontFamily,
+        fontSize: '0.75rem',
+        lineHeight: '1.25rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (caption03)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "0.625rem",
-        lineHeight: "1rem",
+        fontFamily: fontFamily,
+        fontSize: '0.625rem',
+        lineHeight: '1rem',
         fontWeight: 500,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     if (caption04)
       return {
-        fontFamily: "Spoqa Han Sans Neo, sans-serif",
-        fontSize: "0.625rem",
-        lineHeight: "1rem",
+        fontFamily: fontFamily,
+        fontSize: '0.625rem',
+        lineHeight: '1rem',
         fontWeight: 400,
-        ...defaultStyle,
+        ...defaultStyle
       } as React.CSSProperties;
     return {
-      fontFamily: "Spoqa Han Sans Neo, sans-serif",
-      fontSize: "1rem",
-      lineHeight: "1.5rem",
+      fontFamily: fontFamily,
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
       fontWeight: 500,
-      ...defaultStyle,
+      ...defaultStyle
     } as React.CSSProperties;
   }, [
+    fontFamily,
     display01,
     display02,
     headline01,
@@ -189,7 +192,7 @@ function GBText({
     caption02,
     caption03,
     caption04,
-    color,
+    color
   ]);
   return <span style={style}>{children}</span>;
 }
