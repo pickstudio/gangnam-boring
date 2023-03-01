@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface IProps {
   list: { label: string; id: string }[];
@@ -39,17 +39,29 @@ const Container = styled.div`
   height: 52px;
 `;
 
-const Tab = styled.div<{ isCurrent?: boolean }>`
+const commonTabStyle = css`
   display: flex;
   flex: 1;
   font-weight: bold;
   align-items: center;
   justify-content: center;
-  border-top-right-radius: ${(props) => props.id === "0" && "12px"};
-  border-top-left-radius: ${(props) => props.id !== "0" && "12px"};
   border-top-left-radius: 12px;
-  background-color: ${(props) => (props.isCurrent ? "#e9e9e9" : "white")};
-  color: ${(props) => (props.isCurrent ? "#424242" : "#BDBDBD")};
+`;
+
+const currentTabStyle = css`
+  background-color: #e9e9e9;
+  color: #424242;
+  border-top-right-radius: 12px;
+`;
+
+const defaultTabStyle = css`
+  background-color: white;
+  color: #bdbdbd;
+`;
+
+const Tab = styled.div<{ isCurrent?: boolean }>`
+  ${commonTabStyle}
+  ${(props) => (props.isCurrent ? currentTabStyle : defaultTabStyle)}
 `;
 
 export default React.memo(MenuTab);
