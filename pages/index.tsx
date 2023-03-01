@@ -9,7 +9,7 @@ export default function Home() {
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
-      <GBLayout>
+      <GBLayout header headerRightIcon>
         <Container></Container>
       </GBLayout>
     </React.Fragment>

@@ -1,8 +1,8 @@
-import BlingIcon from "./bling.svg";
-import CylinderIcon from "./cylinder.svg";
-import FlowerIcon from "./flower.svg";
-import RainbowIcon from "./rainbow.svg";
-import VerticalRainbowIcon from "./vertical_rainbow.svg";
+import BlingIcon from "./img_bling.svg";
+import CylinderIcon from "./img_cylinder.svg";
+import FlowerIcon from "./img_flower.svg";
+import RainbowIcon from "./img_rainbow.svg";
+import VerticalRainbowIcon from "./img_vertical_rainbow.svg";
 
 import UploadIcon from "./ic_upload.svg";
 import ArrowDownIcon from "./ic_arrowDown.svg";
@@ -14,7 +14,7 @@ import CloseIcon from "./ic_close.svg";
 import DestinationIcon from "./ic_destination.svg";
 import FacebookIcon from "./ic_facebook.svg";
 import InstagramIcon from "./ic_instagram.svg";
-import BigDestinationIcon from "./ic_bigDestinationIcon.svg";
+import BigDestinationIcon from "./ic_bigDestination.svg";
 import RefreshIcon from "./ic_refresh.svg";
 import SubwayIcon from "./ic_subway.svg";
 import TagIcon from "./ic_tag.svg";

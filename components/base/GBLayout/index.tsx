@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import Header from "@/components/navigation/Header";
+
 interface IProps {
   children: React.ReactNode;
   header?: boolean;
@@ -34,6 +36,13 @@ function GBLayout({
 
   return (
     <Container>
+      {header && (
+        <Header
+          headerLeftIcon={headerLeftIcon}
+          headerRightIcon={headerRightIcon}
+          headerMyPageIcon={headerMyPageIcon}
+        />
+      )}
       <ContentContainer>{children}</ContentContainer>
     </Container>
   );
