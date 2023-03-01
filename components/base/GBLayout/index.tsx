@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import Header from "@/components/navigation/Header";
+import Header from "@/components/base/Header";
 
 interface IProps {
   children: React.ReactNode;

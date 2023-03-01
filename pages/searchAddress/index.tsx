@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import styled from "styled-components";
 
-import AddressInputBar from "@/components/bar/AddressInputBar";
+import AddressInputBar from "@/components/search/AddressInputBar";
 import GBLayout from "@/components/base/GBLayout";
 import { Icons } from "@/public/icon";
 
