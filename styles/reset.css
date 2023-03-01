@@ -124,14 +124,24 @@ table {
 }
 
 @font-face {
-  font-family: 'EF_jejudoldam';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+  font-family: "EF_jejudoldam";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
+    format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'NanumSquareNeo-Variable';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "UhBeeSe_hyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSe_hyun.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }

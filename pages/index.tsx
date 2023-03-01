@@ -1,4 +1,6 @@
+import { GBText } from "@/components/base";
 import GBLayout from "@/components/base/GBLayout";
+import { Icons } from "@/public/icon";
 import Head from "next/head";
 import React from "react";
 import styled from "styled-components";
@@ -9,22 +11,35 @@ export default function Home() {
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
+
       <GBLayout header headerRightIcon>
         <Container>
-          <Icons.SvgElement.twistIcon />
+          <IconContainer style={{ left: 30 }}>
+            <Icons.SvgElement.twistIcon />
+          </IconContainer>
           <TextContainer>
-            <GBText>{"우리 또 강남에서 만나?"}</GBText>
-            <GBText>{"강남은지루해"}</GBText>
+            <GBText fontFamily="UhBeeSe_hyun" body01>
+              {"우리 또 강남에서 만나?"}
+            </GBText>
+            <GBText fontFamily="EF_jejudoldam" display01>
+              {"강남은지루해"}
+            </GBText>
           </TextContainer>
-          <IconContainer>
+          <IconContainer style={{ right: 0, top: 70 }}>
             <Icons.SvgElement.verticalRainbowIcon />
           </IconContainer>
-          <IconContainer margin={14}>
+          <IconContainer style={{ left: 14, top: 200 }}>
             <Icons.SvgElement.flowerIcon />
           </IconContainer>
-          <Icons.SvgElement.blingIcon />
-          <Icons.SvgElement.rainbowIcon />
-          <Icons.SvgElement.cylinderIcon />
+          <IconContainer style={{ right: 32, top: 320 }}>
+            <Icons.SvgElement.blingIcon />
+          </IconContainer>
+          <IconContainer style={{ top: 400 }}>
+            <Icons.SvgElement.rainbowIcon />
+          </IconContainer>
+          <IconContainer style={{ right: 8, top: 520 }}>
+            <Icons.SvgElement.cylinderIcon />
+          </IconContainer>
         </Container>
       </GBLayout>
     </React.Fragment>
@@ -34,21 +49,20 @@ export default function Home() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 `;
 
 const IconContainer = styled.div`
-  margin-left: auto;
+  position: absolute;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+
   margin-top: 120px;
-  align-self: center;
+  text-align: center;
   vertical-align: middle;
 `;
