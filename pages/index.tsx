@@ -18,6 +18,7 @@ export default function Home() {
 
 const Container = styled.div`
   border: 1px solid black;
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 `;
