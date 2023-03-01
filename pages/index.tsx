@@ -1,13 +1,14 @@
-import GBLayout from "@/components/base/GBLayout";
-import Head from "next/head";
-import React from "react";
-import styled from "styled-components";
+import GBLayout from '@/components/base/GBLayout';
+import Head from 'next/head';
+import React from 'react';
+import styled from 'styled-components';
+import DirectionButton from '../components/common/DirectionButton';
 
 export default function Home() {
   return (
     <React.Fragment>
       <Head>
-        <title>{"강남은 지루해"}</title>
+        <title>{'강남은 지루해'}</title>
       </Head>
       <GBLayout header headerRightIcon>
         <Container></Container>
