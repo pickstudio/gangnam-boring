@@ -11,7 +11,9 @@ export default function Home() {
         <title>{'강남은 지루해'}</title>
       </Head>
       <GBLayout header headerRightIcon>
-        <Container></Container>
+        <Container>
+          <DirectionButton />
+        </Container>
       </GBLayout>
     </React.Fragment>
   );

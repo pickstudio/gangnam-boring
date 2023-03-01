@@ -1,8 +1,8 @@
-import BlingIcon from "./img_bling.svg";
-import CylinderIcon from "./img_cylinder.svg";
-import FlowerIcon from "./img_flower.svg";
-import RainbowIcon from "./img_rainbow.svg";
-import VerticalRainbowIcon from "./img_vertical_rainbow.svg";
+import BlingIcon from './img_bling.svg';
+import CylinderIcon from './img_cylinder.svg';
+import FlowerIcon from './img_flower.svg';
+import RainbowIcon from './img_rainbow.svg';
+import VerticalRainbowIcon from './img_vertical_rainbow.svg';
 
 import UploadIcon from "./ic_upload.svg";
 import ArrowDownIcon from "./ic_arrowDown.svg";
@@ -42,6 +42,6 @@ export const Icons = {
     bigDestinationIcon: BigDestinationIcon,
     refreshIcon: RefreshIcon,
     subwayIcon: SubwayIcon,
-    tagIcon: TagIcon,
-  },
+    tagIcon: TagIcon
+  }
 };
