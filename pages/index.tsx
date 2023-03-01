@@ -1,9 +1,11 @@
+import React from 'react';
+import Head from 'next/head';
+import styled, { keyframes } from 'styled-components';
+
 import { GBText } from '@/components/base';
 import GBLayout from '@/components/base/GBLayout';
 import { Icons } from '@/public/icon';
-import Head from 'next/head';
-import React from 'react';
-import styled from 'styled-components';
+import DirectionButton from '../components/home/DirectionButton';
 
 export default function Home() {
   const iconList = [
@@ -16,6 +18,10 @@ export default function Home() {
       icon: <Icons.SvgElement.flowerIcon />
     },
     {
+      style: { right: 8, top: 520 },
+      icon: <Icons.SvgElement.cylinderIcon />
+    },
+    {
       style: { right: 32, top: 320 },
       icon: <Icons.SvgElement.blingIcon />
     },
@@ -23,14 +29,7 @@ export default function Home() {
       style: { top: 400 },
       icon: <Icons.SvgElement.rainbowIcon />
     },
-    {
-      style: { right: 8, top: 520 },
-      icon: <Icons.SvgElement.cylinderIcon />
-    },
-    {
-      style: { left: 14, top: 200 },
-      icon: <Icons.SvgElement.flowerIcon />
-    }
+
   ];
   return (
     <React.Fragment>
@@ -51,10 +50,18 @@ export default function Home() {
             </GBText>
           </TextContainer>
           {iconList.map((item, i) => (
-            <IconContainer key={i} style={item.style}>
+            <IconContainer direction={i % 2} key={i} style={item.style}>
               {item.icon}
             </IconContainer>
           ))}
+          <ButtonContainer>
+            <ButtonItemContainer>
+              <DirectionButton label="정하기가 어려울 땐" />
+            </ButtonItemContainer>
+            <ButtonItemContainer>
+              <DirectionButton label="중간장소가 궁금할 땐" />
+            </ButtonItemContainer>
+          </ButtonContainer>
         </Container>
       </GBLayout>
     </React.Fragment>
@@ -69,14 +76,33 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-const IconContainer = styled.div`
+const moveRight = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(360px);
+  }
+`;
+
+const moveLeft = keyframes`
+   0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-360px);
+  }
+`;
+
+const IconContainer = styled.div<{ direction?: number }>`
   position: absolute;
+  animation: ${({ direction }) => (direction === 1 ? moveLeft : moveRight)} 10s 1s infinite linear alternate;
 `;
 
 const TextContainer = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-
   margin-top: 120px;
   text-align: center;
   vertical-align: middle;
@@ -84,4 +110,9 @@ const TextContainer = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const ButtonItemContainer = styled.div`
+  flex: 1;
 `;
