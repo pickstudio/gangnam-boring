@@ -18,6 +18,7 @@ import BigDestinationIcon from "./ic_bigDestination.svg";
 import RefreshIcon from "./ic_refresh.svg";
 import SubwayIcon from "./ic_subway.svg";
 import TagIcon from "./ic_tag.svg";
+import leftArrowIcon from "./ic_leftArrow.svg";
 
 export const Icons = {
   SvgElement: {
@@ -30,6 +31,7 @@ export const Icons = {
     uploadIcon: UploadIcon,
     arrowDownIcon: ArrowDownIcon,
     arrowUpIcon: ArrowUpIcon,
+    leftArrowIcon: leftArrowIcon,
     addIcon: AddIcon,
     alertIcon: AlertIcon,
     busIcon: BusIcon,
