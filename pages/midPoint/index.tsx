@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import styled from "styled-components";
 import { Icons } from "@/public/icon";
+import share from "@/lib/utils/client/share";
 
 import GBLayout from "@/components/base/GBLayout";
 import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
@@ -81,6 +82,8 @@ export default function MidPoint() {
 
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, []);
+
+  const onClickShare = share({ url: "", title: "", text: "" });
 
   return (
     <React.Fragment>
