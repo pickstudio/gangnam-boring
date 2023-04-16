@@ -7,7 +7,7 @@ interface IProps {
   color?: string;
 }
 
-function GBButton({ children, onClick, color = "#FFE812" }: IProps) {
+function GBButton({ children, onClick, color = "#FFF" }: IProps) {
   return (
     <Container onClick={onClick} color={color}>
       {children}

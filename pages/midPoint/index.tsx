@@ -2,14 +2,56 @@ import React from "react";
 import Head from "next/head";
 
 import styled from "styled-components";
+import { Icons } from "@/public/icon";
 
 import GBLayout from "@/components/base/GBLayout";
-import { Icons } from "@/public/icon";
+import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
 
 const latitude = 33.45079660685329;
 const longitude = 126.57230632373583;
 
+const transportInfoArray = [
+  {
+    totalTimeCost: 10,
+    numberOfTransfer: 2,
+    timeCostOfPublicTransfer: 3,
+    timeCostOfCar: 3,
+  },
+  {
+    totalTimeCost: 10,
+    numberOfTransfer: 2,
+    timeCostOfPublicTransfer: 3,
+    timeCostOfCar: 3,
+  },
+  {
+    totalTimeCost: 10,
+    numberOfTransfer: 2,
+    timeCostOfPublicTransfer: 3,
+    timeCostOfCar: 3,
+  },
+  {
+    totalTimeCost: 10,
+    numberOfTransfer: 2,
+    timeCostOfPublicTransfer: 3,
+    timeCostOfCar: 3,
+  },
+  {
+    totalTimeCost: 10,
+    numberOfTransfer: 2,
+    timeCostOfPublicTransfer: 3,
+    timeCostOfCar: 3,
+  },
+  {
+    totalTimeCost: 10,
+    numberOfTransfer: 2,
+    timeCostOfPublicTransfer: 3,
+    timeCostOfCar: 3,
+  },
+];
+
 export default function MidPoint() {
+  React.useEffect(() => {}, []);
+
   React.useEffect(() => {
     const mapScript = document.createElement("script");
 
@@ -38,7 +80,7 @@ export default function MidPoint() {
     mapScript.addEventListener("load", onLoadKakaoMap);
 
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
-  }, [latitude, longitude]);
+  }, []);
 
   return (
     <React.Fragment>
@@ -47,6 +89,14 @@ export default function MidPoint() {
       </Head>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
+          <InfoCardContainer>
+            <MidPointInfoCard
+              title={"용답역"}
+              timeCost={0}
+              onClickShare={() => {}}
+              transportInfoArray={transportInfoArray}
+            />
+          </InfoCardContainer>
           <MapContainer id="map" />
         </ContentContainer>
       </GBLayout>
@@ -60,9 +110,17 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  overflow: hidden;
 `;
 
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+const InfoCardContainer = styled.div`
+  position: absolute;
+  bottom: 20px;
+  z-index: 10;
+  padding-left: 20px;
 `;
