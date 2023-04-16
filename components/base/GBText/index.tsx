@@ -2,7 +2,11 @@ import * as React from "react";
 
 interface IProps {
   children: string | string[] | React.ReactNode;
-  fontFamily?: "EF_jejudoldam" | "NanumSquareNeo" | "UhBeeSe_hyun";
+  fontFamily?:
+    | "EF_jejudoldam"
+    | "NanumSquareNeo"
+    | "UhBeeSe_hyun"
+    | "GmarketSansMedium";
   display01?: boolean;
   display02?: boolean;
   headline01?: boolean;

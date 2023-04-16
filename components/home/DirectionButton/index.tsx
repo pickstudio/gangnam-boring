@@ -1,19 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { GBText } from '@/components/base';
-import { Icons } from '@/public/icon';
+import { GBText } from "@/components/base";
+import { Icons } from "@/public/icon";
 
 interface IProps {
   label?: string;
 }
 
-function DirectionButton({ label = '정하기 어려울 때' }: IProps) {
+function DirectionButton({ label = "정하기 어려울 때" }: IProps) {
   return (
     <Container>
       <GBText fontFamily="EF_jejudoldam">{label}</GBText>
       <Direction>
-        <Icons.SvgElement.arrowDownIcon  />
+        <Icons.SvgElement.arrowDownIcon />
       </Direction>
     </Container>
   );
@@ -32,4 +32,5 @@ const Direction = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 18px;
+  cursor: pointer;
 `;
