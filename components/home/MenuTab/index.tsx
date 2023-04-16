@@ -35,7 +35,6 @@ function MenuTab({ list, onClick }: IProps) {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-
   height: 52px;
 `;
 
@@ -62,6 +61,7 @@ const defaultTabStyle = css`
 const Tab = styled.div<{ isCurrent?: boolean }>`
   ${commonTabStyle}
   ${(props) => (props.isCurrent ? currentTabStyle : defaultTabStyle)}
+  cursor :pointer;
 `;
 
 export default React.memo(MenuTab);
