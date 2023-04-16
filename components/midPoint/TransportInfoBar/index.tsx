@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 import { GBText } from "@/components/base";
 import { Icons } from "@/public/icon";
@@ -19,10 +19,12 @@ function TransportInfoBar({
   timeCostOfPublicTransfer,
   timeCostOfCar,
 }: IProps) {
+  const theme = useTheme();
+
   return (
     <Container>
       <OrderContainer>
-        <GBText>{orderOfRoute}</GBText>
+        <GBText color={theme.colors.white}>{orderOfRoute}</GBText>
       </OrderContainer>
       <GBText>{`${totalTimeCost}분`}</GBText>
       <GBText>{`환승 ${numberOfTransfer}회`}</GBText>
