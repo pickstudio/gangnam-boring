@@ -28,7 +28,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid blue;
+
   background-color: #e9e9e9;
   height: 90%;
   padding: 32px 60px;
@@ -52,7 +52,6 @@ const StationBox = styled.div`
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
 `;
 
 export default React.memo(RandomTabContainer);
