@@ -1,8 +1,16 @@
 import { GBButton, GBText } from "@/components/base";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function RandomTabContainer() {
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+function RandomTabContainer(): React.ReactElement {
+  const [url, setUrl] = useState<string>("");
+
+  useEffect(() => {
+    setUrl(location.href);
+  }, []);
+
   return (
     <Container>
       <TextContainer>
@@ -18,7 +26,12 @@ function RandomTabContainer() {
           {"홍대입구역"}
         </GBText>
       </StationBox>
-      <BoxContainer></BoxContainer>
+      <BoxContainer>
+        <CopyToClipboard text={url}>
+          <GBButton color="white">{"친구에게 공유하기"}</GBButton>
+        </CopyToClipboard>
+        <GBButton color="white">{"다시뽑기"}</GBButton>
+      </BoxContainer>
     </Container>
   );
 }
@@ -52,6 +65,8 @@ const StationBox = styled.div`
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
+  width: 100%;
 `;
 
 export default React.memo(RandomTabContainer);
