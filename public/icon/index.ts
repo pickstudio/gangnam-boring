@@ -4,6 +4,8 @@ import FlowerIcon from "./img_flower.svg";
 import RainbowIcon from "./img_rainbow.svg";
 import VerticalRainbowIcon from "./img_vertical_rainbow.svg";
 import TwistIcon from "./img_twist.svg";
+import MainTitleImage from "./img_mainTitle.svg";
+import SubTitleImage from "./img_subTitle.svg";
 
 import UploadIcon from "./ic_upload.svg";
 import ArrowDownIcon from "./ic_arrowDown.svg";
@@ -29,6 +31,8 @@ export const Icons = {
     rainbowIcon: RainbowIcon,
     verticalRainbowIcon: VerticalRainbowIcon,
     twistIcon: TwistIcon,
+    mainTitleImage: MainTitleImage,
+    subTitleImage: SubTitleImage,
 
     uploadIcon: UploadIcon,
     arrowDownIcon: ArrowDownIcon,

@@ -58,12 +58,12 @@ export default function Home() {
             <Icons.SvgElement.twistIcon />
           </IconContainer>
           <TextContainer>
-            <GBText fontFamily="UhBeeSe_hyun" body01>
-              {"우리 또 강남에서 만나?"}
-            </GBText>
-            <GBText fontFamily="EF_jejudoldam" display01>
-              {"강남은지루해"}
-            </GBText>
+            <ImageContainer>
+              <Icons.SvgElement.subTitleImage />
+            </ImageContainer>
+            <ImageContainer>
+              <Icons.SvgElement.mainTitleImage />
+            </ImageContainer>
           </TextContainer>
           {iconList.map((item, i) => (
             <IconContainer direction={i % 2} key={i} style={item.style}>
@@ -92,6 +92,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  background-color: #fff0da;
 `;
 
 const moveRight = keyframes`
@@ -136,4 +137,11 @@ const ButtonContainer = styled.div`
 
 const ButtonItemContainer = styled.div`
   flex: 1;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 42px;
 `;

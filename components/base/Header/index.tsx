@@ -38,6 +38,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  background-color: #fff0da;
+  max-width: 768px;
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.colors.gray10};
 `;
