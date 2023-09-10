@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import React from "react";
+import React, { useCallback, useEffect } from "react";
+
 import Head from "next/head";
 
 import styled from "styled-components";
@@ -8,8 +9,9 @@ import styled from "styled-components";
 import AddressInputBar from "@/components/search/AddressInputBar";
 import GBLayout from "@/components/base/GBLayout";
 import { Icons } from "@/public/icon";
+import { getAddr } from "@/lib/utils/searchAdress";
 
-export default function searchAddress() {
+export default function SearchAddress() {
   return (
     <React.Fragment>
       <Head>
