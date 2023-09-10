@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
 
 import Head from "next/head";
 
@@ -10,8 +10,23 @@ import AddressInputBar from "@/components/search/AddressInputBar";
 import GBLayout from "@/components/base/GBLayout";
 import { Icons } from "@/public/icon";
 import { getAddr } from "@/lib/utils/searchAdress";
+import AddressResultContainer from "@/container/AddressResultContainer";
+import { AddressType } from "@/interface/api/address";
 
 export default function SearchAddress() {
+  const [addressList, setAddressList] = useState<AddressType[]>([]);
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+
+  const handleAddressList = async (keyword: string) => {
+    const response = await getAddr(keyword);
+    setAddressList(response);
+  };
+
+  const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value);
+    handleAddressList(e.target.value);
+  };
+
   return (
     <React.Fragment>
       <Head>
@@ -19,7 +34,12 @@ export default function SearchAddress() {
       </Head>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
-          <AddressInputBar />
+          <AddressInputBar
+            placeHolder="지번, 도로명, 건물명으로 검색"
+            value={searchKeyword}
+            setValue={onChangeKeyword}
+          />
+          <AddressResultContainer addressList={addressList} />
         </ContentContainer>
       </GBLayout>
     </React.Fragment>
@@ -27,7 +47,6 @@ export default function SearchAddress() {
 }
 
 const ContentContainer = styled.div`
-  border: 1px solid black;
   width: 100%;
   height: 100%;
   padding: 20px;

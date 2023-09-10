@@ -1,7 +1,8 @@
-import { GBText } from "@/components/base";
-import { Icons } from "@/public/icon";
 import React from "react";
 import styled from "styled-components";
+
+import { GBText } from "@/components/base";
+import { Icons } from "@/public/icon";
 
 interface IProps {
   mainAddress: string;
@@ -28,6 +29,7 @@ const Container = styled.button`
   width: 100%;
   height: 30px;
   padding: 0px;
+  margin-bottom: 30px;
   background: none;
   border: none;
   color: #616161;
