@@ -10,6 +10,7 @@ import AddressInputBar from "@/components/search/AddressInputBar";
 import GBLayout from "@/components/base/GBLayout";
 import { Icons } from "@/public/icon";
 import { getAddr } from "@/lib/utils/searchAdress";
+import AddressResultBar from "@/components/search/AddressResultBar";
 
 export default function SearchAddress() {
   return (
@@ -20,6 +21,7 @@ export default function SearchAddress() {
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
           <AddressInputBar />
+          <AddressResultBar />
         </ContentContainer>
       </GBLayout>
     </React.Fragment>
