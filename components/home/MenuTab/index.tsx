@@ -35,27 +35,31 @@ function MenuTab({ list, onClick }: IProps) {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  height: 52px;
+  height: 56px;
+  background-color: #fff0da;
+
+  justify-content: center;
 `;
 
 const commonTabStyle = css`
+  width: 170px;
   display: flex;
-  flex: 1;
-  font-weight: bold;
+  font-size: 18px;
+  font-family: "GmarketSansMedium";
   align-items: center;
   justify-content: center;
-  border-top-left-radius: 12px;
 `;
 
 const currentTabStyle = css`
-  background-color: #e9e9e9;
-  color: #424242;
-  border-top-right-radius: 12px;
+  font-weight: bold;
+  background-color: #ffe977;
+  border: 2px solid black;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
 `;
 
 const defaultTabStyle = css`
-  background-color: white;
-  color: #bdbdbd;
+  background-color: #fff0da;
 `;
 
 const Tab = styled.div<{ isCurrent?: boolean }>`

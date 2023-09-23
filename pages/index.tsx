@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import styled, { keyframes } from "styled-components";
 
-import { GBText } from "@/components/base";
 import GBLayout from "@/components/base/GBLayout";
 import { Icons } from "@/public/icon";
 import DirectionButton from "../components/home/DirectionButton";
@@ -40,7 +39,7 @@ export default function Home() {
     },
     {
       id: "1",
-      label: "중간장소가 궁금할 땐",
+      label: "추천받기",
     },
   ];
 
@@ -54,29 +53,17 @@ export default function Home() {
       </Head>
       <GBLayout header headerRightIcon>
         <Container>
-          <IconContainer style={{ left: 30 }}>
-            <Icons.SvgElement.twistIcon />
-          </IconContainer>
           <TextContainer>
-            <ImageContainer>
+            <TitleBox>
               <Icons.SvgElement.subTitleImage />
-            </ImageContainer>
+            </TitleBox>
             <ImageContainer>
-              <Icons.SvgElement.mainTitleImage />
+              <Icons.SvgElement.nomoreImage />
             </ImageContainer>
           </TextContainer>
-          {iconList.map((item, i) => (
-            <IconContainer direction={i % 2} key={i} style={item.style}>
-              {item.icon}
-            </IconContainer>
-          ))}
           <ButtonContainer>
-            <ButtonItemContainer>
-              <DirectionButton label="정하기가 어려울 땐" />
-            </ButtonItemContainer>
-            <ButtonItemContainer>
-              <DirectionButton label="중간장소가 궁금할 땐" />
-            </ButtonItemContainer>
+            <DirectionButton type="left" />
+            <DirectionButton type="right" />
           </ButtonContainer>
           <MenuTab list={tabList} onClick={handleClickTab} />
         </Container>
@@ -93,6 +80,7 @@ const Container = styled.div`
   height: 100%;
   box-sizing: border-box;
   background-color: #fff0da;
+  padding-top: 22px;
 `;
 
 const moveRight = keyframes`
@@ -119,29 +107,26 @@ const IconContainer = styled.div<{ direction?: number }>`
     1s infinite linear alternate;
 `;
 
+const TitleBox = styled.div``;
+
 const TextContainer = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: 120px;
   text-align: center;
   vertical-align: middle;
-  height: 100vh;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 18px;
-`;
-
-const ButtonItemContainer = styled.div`
-  flex: 1;
+  margin-bottom: 8px;
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 42px;
+  margin-top: 16px;
+  margin-bottom: 46px;
+  box-sizing: border-box;
 `;

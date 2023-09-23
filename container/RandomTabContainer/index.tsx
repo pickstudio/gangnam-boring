@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Icons } from "@/public/icon";
 
 function RandomTabContainer(): React.ReactElement {
   const [url, setUrl] = useState<string>("");
@@ -13,7 +14,11 @@ function RandomTabContainer(): React.ReactElement {
 
   return (
     <Container>
-      <TextContainer>
+      <ImageContainer>
+        <Icons.SvgElement.randomTitleImage />
+        <Icons.SvgElement.randomSubTitleImage />
+      </ImageContainer>
+      {/* <TextContainer>
         <GBText fontFamily="UhBeeSe_hyun" title01 color="white">
           {"두근두근!"}
         </GBText>
@@ -31,22 +36,26 @@ function RandomTabContainer(): React.ReactElement {
           <GBButton color="white">{"친구에게 공유하기"}</GBButton>
         </CopyToClipboard>
         <GBButton color="white">{"다시뽑기"}</GBButton>
-      </BoxContainer>
+      </BoxContainer> */}
     </Container>
   );
 }
 
 const Container = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  background-color: #e9e9e9;
-  height: 90%;
-  padding: 32px 60px;
+  background-color: white;
+  border: 1px solid red;
 `;
-
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid red;
+`;
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;

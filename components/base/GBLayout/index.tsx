@@ -63,8 +63,8 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  position: relative;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
   overflow: overlay;
   box-sizing: border-box;
   max-width: 768px;

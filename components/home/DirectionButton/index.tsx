@@ -1,36 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 
-import { GBText } from "@/components/base";
 import { Icons } from "@/public/icon";
 
 interface IProps {
-  label?: string;
+  type: string;
 }
 
-function DirectionButton({ label = "정하기 어려울 때" }: IProps) {
+function DirectionButton({ type }: IProps) {
   return (
-    <Container>
-      <GBText fontFamily="EF_jejudoldam">{label}</GBText>
-      <Direction>
-        <Icons.SvgElement.arrowDownIcon />
-      </Direction>
-    </Container>
+    <Direction>
+      {type === "left" ? (
+        <Icons.SvgElement.yellowArrowIcon />
+      ) : (
+        <Icons.SvgElement.pinkArrowIcon />
+      )}
+    </Direction>
   );
 }
 
 export default React.memo(DirectionButton);
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-`;
-
 const Direction = styled.div`
-  width: 36px;
-  height: 36px;
-  border-radius: 18px;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  width: 112px;
+  height: 117px;
+  margin: 0 26px 0 26px;
 `;

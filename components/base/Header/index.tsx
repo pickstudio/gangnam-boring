@@ -23,7 +23,7 @@ function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
         <IconContainer onClick={() => router.back()}>
           {/* {headerLeftIcon && <Icons.SvgElement.closeIcon />} */}
         </IconContainer>
-        <GBText body01>{title}</GBText>
+        {/* <GBText body01>{title}</GBText> */}
         <IconContainer>
           {headerRightIcon && <Icons.SvgElement.uploadIcon />}
         </IconContainer>
