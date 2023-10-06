@@ -41,7 +41,6 @@ const Container = styled.div`
   background-color: #fff0da;
   max-width: 768px;
   width: 100%;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray10};
 `;
 
 const ContentContainer = styled.div`

@@ -4,11 +4,11 @@ import styled, { css } from "styled-components";
 interface IProps {
   list: { label: string; id: string }[];
   onClick: (event?: React.MouseEvent<HTMLElement>) => void;
+  currentTab: any;
+  setCurrentTab: any;
 }
 
-function MenuTab({ list, onClick }: IProps) {
-  const [currentTab, setCurrentTab] = useState<number>(0);
-
+function MenuTab({ list, onClick, currentTab, setCurrentTab }: IProps) {
   const onClickHandler = useCallback(
     (e: any, i: number) => {
       setCurrentTab(i);

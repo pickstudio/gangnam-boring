@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import styled, { keyframes } from "styled-components";
 
@@ -7,30 +7,11 @@ import { Icons } from "@/public/icon";
 import DirectionButton from "../components/home/DirectionButton";
 import MenuTab from "@/components/home/MenuTab";
 import RandomTabContainer from "@/container/RandomTabContainer";
+import RecommendTabContainer from "@/container/RecommendTabContainer";
 
 export default function Home() {
-  const iconList = [
-    {
-      style: { right: 0, top: 70 },
-      icon: <Icons.SvgElement.verticalRainbowIcon />,
-    },
-    {
-      style: { left: 14, top: 200 },
-      icon: <Icons.SvgElement.flowerIcon />,
-    },
-    {
-      style: { right: 8, top: 520 },
-      icon: <Icons.SvgElement.cylinderIcon />,
-    },
-    {
-      style: { right: 32, top: 320 },
-      icon: <Icons.SvgElement.blingIcon />,
-    },
-    {
-      style: { top: 400 },
-      icon: <Icons.SvgElement.rainbowIcon />,
-    },
-  ];
+  const [currentTab, setCurrentTab] = useState<number>(0);
+  const option1Ref = useRef<HTMLDivElement | null>(null);
 
   const tabList = [
     {
@@ -46,17 +27,19 @@ export default function Home() {
   const handleClickTab = () => {
     console.log("e");
   };
+
   return (
     <React.Fragment>
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
       <GBLayout header headerRightIcon>
-        <Container>
+        <Container ref={option1Ref}>
           <TextContainer>
             <TitleBox>
               <Icons.SvgElement.subTitleImage />
             </TitleBox>
+
             <ImageContainer>
               <Icons.SvgElement.nomoreImage />
             </ImageContainer>
@@ -65,9 +48,14 @@ export default function Home() {
             <DirectionButton type="left" />
             <DirectionButton type="right" />
           </ButtonContainer>
-          <MenuTab list={tabList} onClick={handleClickTab} />
+          <MenuTab
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
+            list={tabList}
+            onClick={handleClickTab}
+          />
         </Container>
-        <RandomTabContainer />
+        {currentTab === 0 ? <RandomTabContainer /> : <RecommendTabContainer />}
       </GBLayout>
     </React.Fragment>
   );
