@@ -14,20 +14,20 @@ export default async function handler(req: NextRequest) {
         import.meta.url
       )
     ).then((res) => res.arrayBuffer());
-    const background = await fetch(
+    const background = (await fetch(
       new URL(
         '../../../assets/og_background.png',
         //@ts-ignore
         import.meta.url
       )
-    ).then((res) => res.arrayBuffer());
-    const deco = await fetch(
+    ).then((res) => res.arrayBuffer())) as string;
+    const deco = (await fetch(
       new URL(
         '../../../assets/og_deco.png',
         //@ts-ignore
         import.meta.url
       )
-    ).then((res) => res.arrayBuffer());
+    ).then((res) => res.arrayBuffer())) as string;
     const { searchParams } = new URL(req.url);
     const fontData = await font;
 
