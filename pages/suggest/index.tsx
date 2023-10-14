@@ -14,19 +14,19 @@ function SuggestPage() {
   return (
     <Head>
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={`이번엔 {${searchParams.get('place')}} ㅇㄸ?`} />
+      <meta property="og:title" content={`이번엔 {${searchParams.get('place') ?? ''}} ㅇㄸ?`} />
       <meta property="og:description" content={'장소가 마음에 들지 않는다면 클릭해서 다시 찾기'} />
       <meta
         property="og:url"
-        content={`https://borning.dododot.net/badge?place=${searchParams.get('place')}&enPlace=${searchParams.get(
+        content={`https://boring.dododot.net/badge?place=${searchParams.get('place')}&enPlace=${searchParams.get(
           'enPlace'
         )}`}
       />
       <meta
         property="og:image"
-        content={`https://borning.dododot.net/api/og/image?place=${searchParams.get('place')}&enPlace=${searchParams.get(
-          'enPlace'
-        )}`}
+        content={`https://boring.dododot.net/api/og/image?place=${searchParams.get(
+          'place'
+        )}&enPlace=${searchParams.get('enPlace')}`}
       />
     </Head>
   );
