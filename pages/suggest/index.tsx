@@ -24,7 +24,7 @@ function SuggestPage() {
       />
       <meta
         property="og:image"
-        content={`https://www.dododot.net/api/og/image?place=${searchParams.get('place')}&enPlace=${searchParams.get(
+        content={`https://borning.dododot.net/api/og/image?place=${searchParams.get('place')}&enPlace=${searchParams.get(
           'enPlace'
         )}`}
       />
