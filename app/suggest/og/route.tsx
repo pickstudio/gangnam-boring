@@ -1,12 +1,11 @@
-import { ImageResponse } from '@vercel/og';
-import { NextRequest } from 'next/server';
+import { NextRequest, ImageResponse } from 'next/server';
 
-export const config = {
-  runtime: 'edge'
-};
+export const runtime = 'edge';
 
-export default async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
+    const { searchParams } = new URL(req.url);
+
     const font = await fetch(
       new URL(
         '../../../assets/fonts/GmarketSansTTFMedium.ttf',
@@ -28,7 +27,6 @@ export default async function handler(req: NextRequest) {
         import.meta.url
       )
     ).then((res) => res.arrayBuffer())) as string;
-    const { searchParams } = new URL(req.url);
     const fontData = await font;
 
     return new ImageResponse(
@@ -44,7 +42,7 @@ export default async function handler(req: NextRequest) {
             textAlign: 'center',
             alignItems: 'center'
           }}>
-          <img width="100%" src={background} style={{ position: 'absolute', zIndex: -10, top: 20 }} />
+          <img width="100%" src={background} style={{ position: 'absolute', top: 20 }} />
           <div
             style={{
               fontSize: 64,

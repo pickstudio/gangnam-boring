@@ -1,5 +1,5 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 interface IProps {
   onClick?: (event?: React.MouseEvent<HTMLElement>) => void;
@@ -29,14 +29,15 @@ const Container = styled.button`
   color: #616161;
 `;
 
-const Input = styled.input.attrs({
-  placeholderTextColor: "#BDBDBD",
-})`
+const Input = styled.input`
   width: 100%;
   height: 30px;
   border-width: 0px;
   caret-color: #616161;
   color: #616161;
+  &::placeholder{
+    color: "#BDBDBD";
+  }
   &:focus {
     outline: none;
   }

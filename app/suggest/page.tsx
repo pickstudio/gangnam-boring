@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Head from 'next/head';
-import styled, { keyframes } from 'styled-components';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params, searchParams }: any): Promise<Metadata> {
@@ -10,9 +7,15 @@ export async function generateMetadata({ params, searchParams }: any): Promise<M
     openGraph: {
       title: `이번엔 {${searchParams['place'] ?? ''}} ㅇㄸ?`,
       description: '장소가 마음에 들지 않는다면 클릭해서 다시 찾기',
-      url: `https://boring.dododot.net/badge?place=${searchParams['place']}&enPlace=${searchParams['enPlace']}`,
+      url: `https://boring.dododot.net/suggest?place=${searchParams['place'] ?? ''}&enPlace=${
+        searchParams['enPlace'] ?? ''
+      }`,
       images: [
-        `https://boring.dododot.net/api/og/image?place=${searchParams['place']}&enPlace=${searchParams['enPlace']}`
+        {
+          url: `https://boring.dododot.net/suggest/og?place=${searchParams['place'] ?? ''}&enPlace=${
+            searchParams['enPlace'] ?? ''
+          }`
+        }
       ]
     }
   };

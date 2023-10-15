@@ -1,4 +1,4 @@
-const isShareSupported = () => navigator.share ?? false;
+const isShareSupported = () => navigator?.share ?? false;
 
 type Data = {
   url: string;
