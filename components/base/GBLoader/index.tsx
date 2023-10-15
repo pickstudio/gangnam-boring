@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import styled, { useTheme } from "styled-components";
 import { ClimbingBoxLoader } from "react-spinners";
 

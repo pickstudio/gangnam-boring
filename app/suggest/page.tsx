@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Head from 'next/head';
-import styled, { keyframes } from 'styled-components';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params, searchParams }: any): Promise<Metadata> {

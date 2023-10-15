@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
 
 interface IProps {
@@ -28,5 +28,4 @@ const Container = styled.button<{ color: string }>`
   background: ${({ color }) => color};
   border: none;
   border-radius: 4px;
-  color: ${({ theme }) => theme.colors.gray100};
 `;
