@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-boring-dev-32142-authRole",
+      "UnauthRoleArn": "arn:aws:iam::730966558337:role/amplify-boring-dev-32142-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::730966558337:role/amplify-boring-dev-32142-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-boring-dev-32142-deployment",
+      "UnauthRoleName": "amplify-boring-dev-32142-unauthRole",
+      "StackName": "amplify-boring-dev-32142",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:730966558337:stack/amplify-boring-dev-32142/86eb92a0-6abe-11ee-8fbf-0269760a6086",
+      "AmplifyAppId": "d22db54l3viqdj"
+    }
+  }
+}

@@ -1,9 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { useRouter } from "next/router";
-import { Icons } from "@/public/icon";
-import { HEADER_CONFIG } from "@/config";
-import { GBText } from "@/components/base";
+'use client';
+
+import React from 'react';
+import styled from 'styled-components';
+import { usePathname, useRouter } from 'next/navigation';
+import { Icons } from '@/public/icon';
+import { HEADER_CONFIG } from '@/config';
+import { GBText } from '@/components/base';
 
 export interface IProps {
   headerLeftIcon?: boolean;
@@ -12,10 +14,11 @@ export interface IProps {
 }
 
 function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
+  const pathname = usePathname();
   const router = useRouter();
 
-  const basicPath = "/" + router.pathname.split("/")[1];
-  const title = HEADER_CONFIG[basicPath]?.name ?? "";
+  const basicPath = '/' + pathname.split('/')[1];
+  const title = HEADER_CONFIG[basicPath]?.name ?? '';
 
   return (
     <Container>
@@ -24,9 +27,7 @@ function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
           {/* {headerLeftIcon && <Icons.SvgElement.closeIcon />} */}
         </IconContainer>
         {/* <GBText body01>{title}</GBText> */}
-        <IconContainer>
-          {headerRightIcon && <Icons.SvgElement.uploadIcon />}
-        </IconContainer>
+        <IconContainer>{headerRightIcon && <Icons.SvgElement.uploadIcon />}</IconContainer>
       </ContentContainer>
     </Container>
   );

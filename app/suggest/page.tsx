@@ -1,0 +1,25 @@
+import React, { useEffect, useRef, useState } from 'react';
+import Head from 'next/head';
+import styled, { keyframes } from 'styled-components';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params, searchParams }: any): Promise<Metadata> {
+  return {
+    title: `이번엔 {${searchParams['place'] ?? ''}} ㅇㄸ?`,
+    description: '장소가 마음에 들지 않는다면 클릭해서 다시 찾기',
+    openGraph: {
+      title: `이번엔 {${searchParams['place'] ?? ''}} ㅇㄸ?`,
+      description: '장소가 마음에 들지 않는다면 클릭해서 다시 찾기',
+      url: `https://boring.dododot.net/badge?place=${searchParams['place']}&enPlace=${searchParams['enPlace']}`,
+      images: [
+        `https://boring.dododot.net/api/og/image?place=${searchParams['place']}&enPlace=${searchParams['enPlace']}`
+      ]
+    }
+  };
+}
+
+function SuggestPage({ params }: any) {
+  return <div />;
+}
+
+export default SuggestPage;
