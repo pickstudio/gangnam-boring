@@ -12,7 +12,7 @@ export async function generateMetadata({ params, searchParams }: any): Promise<M
       }`,
       images: [
         {
-          url: `/suggest/og?place=${searchParams['place'] ?? ''}&enPlace=${
+          url: `https://boring.dododot.net/suggest/og?place=${searchParams['place'] ?? ''}&enPlace=${
             searchParams['enPlace'] ?? ''
           }`
         }
