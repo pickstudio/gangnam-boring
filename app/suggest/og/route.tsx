@@ -47,23 +47,27 @@ export async function GET(req: NextRequest) {
             style={{
               fontSize: 64,
               fontFamily: '"GmarketSansMedium"',
-              letterSpacing: '-0.025em',
               fontWeight: 700,
               color: 'black',
               marginTop: 180,
-              whiteSpace: 'pre-wrap'
-            }}>{`${searchParams.get('place') ?? ''}\n`}</div>
+              whiteSpace: 'pre-wrap',
+              textAlign: 'center'
+            }}>
+            {searchParams.get('place') ?? ''}
+          </div>
           <div
             style={{
               fontSize: 32,
               fontFamily: '"GmarketSansMedium"',
-              letterSpacing: '-0.025em',
               color: '#9E9E9E',
               marginTop: 10,
               padding: '0 120px',
               lineHeight: 1.4,
-              whiteSpace: 'pre-wrap'
-            }}>{`${searchParams.get('enPlace') ?? ''}`}</div>
+              whiteSpace: 'pre-wrap',
+              textAlign: 'center'
+            }}>
+            {searchParams.get('enPlace') ?? ''}
+          </div>
           <img width="200" src={deco} style={{ position: 'absolute', bottom: 100 }} />
         </div>
       ),
