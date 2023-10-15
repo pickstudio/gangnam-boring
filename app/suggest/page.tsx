@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params, searchParams }: any): Promise<Metadata> {
-  console.log(searchParams);
   return {
     title: `이번엔 {${searchParams['place'] ?? ''}} ㅇㄸ?`,
     description: '장소가 마음에 들지 않는다면 클릭해서 다시 찾기',
