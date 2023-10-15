@@ -80,7 +80,7 @@ export default function MidPoint() {
     return () => mapScript.removeEventListener('load', onLoadKakaoMap);
   }, []);
 
-  const onClickShare = share({ url: '', title: '', text: '' });
+  const onClickShare = () => share({ url: '', title: '', text: '' });
 
   return (
     <React.Fragment>
