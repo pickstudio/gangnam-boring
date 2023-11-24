@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styled from "styled-components";
 
@@ -30,7 +32,6 @@ const Container = styled.button`
   height: 30px;
   padding: 0px;
   margin-bottom: 30px;
-  background: none;
   border: none;
   color: #616161;
   align-items: center;

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Head from 'next/head';
+import * as React from "react";
+import Head from "next/head";
 
-import styled from 'styled-components';
-import { Icons } from '@/public/icon';
-import share from '@/lib/utils/client/share';
+import styled from "styled-components";
+import { Icons } from "@/public/icon";
+import share from "@/lib/utils/client/share";
 
-import GBLayout from '@/components/base/GBLayout';
-import MidPointInfoCard from '@/components/midPoint/MidPointInfoCard';
+import GBLayout from "@/components/base/GBLayout";
+import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
 
 const latitude = 33.45079660685329;
 const longitude = 126.57230632373583;
@@ -18,43 +18,43 @@ const transportInfoArray = [
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3
+    timeCostOfCar: 3,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3
+    timeCostOfCar: 3,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3
+    timeCostOfCar: 3,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3
+    timeCostOfCar: 3,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3
+    timeCostOfCar: 3,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3
-  }
+    timeCostOfCar: 3,
+  },
 ];
 
 export default function MidPoint() {
   React.useEffect(() => {
-    const mapScript = document.createElement('script');
+    const mapScript = document.createElement("script");
 
     mapScript.async = true;
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
@@ -63,24 +63,27 @@ export default function MidPoint() {
 
     const onLoadKakaoMap = () => {
       window.kakao.maps.load(() => {
-        const container = document.getElementById('map');
+        const container = document.getElementById("map");
         const options = {
-          center: new window.kakao.maps.LatLng(latitude, longitude)
+          center: new window.kakao.maps.LatLng(latitude, longitude),
         };
         const map = new window.kakao.maps.Map(container, options);
-        const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
+        const markerPosition = new window.kakao.maps.LatLng(
+          latitude,
+          longitude
+        );
         const marker = new window.kakao.maps.Marker({
-          position: markerPosition
+          position: markerPosition,
         });
         marker.setMap(map);
       });
     };
-    mapScript.addEventListener('load', onLoadKakaoMap);
+    mapScript.addEventListener("load", onLoadKakaoMap);
 
-    return () => mapScript.removeEventListener('load', onLoadKakaoMap);
+    return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, []);
 
-  const onClickShare = () => share({ url: '', title: '', text: '' });
+  const onClickShare = () => share({ url: "", title: "", text: "" });
 
   return (
     <React.Fragment>
@@ -88,7 +91,7 @@ export default function MidPoint() {
         <ContentContainer>
           <InfoCardContainer>
             <MidPointInfoCard
-              title={'용답역'}
+              title={"용답역"}
               timeCost={0}
               onClickShare={() => {}}
               transportInfoArray={transportInfoArray}

@@ -53,4 +53,6 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  border-width: 1;
+  border-color: black;
 `;

@@ -32,7 +32,6 @@ const Container = styled.div`
   flex-direction: column;
   cursor: pointer;
   width: 100%;
-  height: 30px;
   padding: 0px;
   background: none;
   border: none;
