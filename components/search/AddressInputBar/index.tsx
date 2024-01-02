@@ -24,25 +24,23 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 48px;
-  border: 1px solid #616161;
   background: none;
-  border-radius: 32px;
   box-sizing: border-box;
   color: #616161;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
 `;
 
 const Input = styled.input`
   width: 100%;
-  border: none;
+  height: 100%;
+  border-radius: 32px;
+  padding: 0 20px;
+  border: 1px solid #dbdbdb;
   caret-color: #ffe977;
   color: #616161;
   &::placeholder {
-    color: "#BDBDBD";
+    color: "#9E9E9E";
   }
   &:focus {
-    outline: none;
+    outline: 1px solid #3e3e3e;
   }
 `;
