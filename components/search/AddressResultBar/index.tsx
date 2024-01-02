@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import styled from "styled-components";
 
@@ -27,6 +25,7 @@ export default React.memo(AddressResultBar);
 
 const Container = styled.button`
   display: flex;
+  flex-direction: row;
   cursor: pointer;
   width: 100%;
   height: 30px;
@@ -35,6 +34,7 @@ const Container = styled.button`
   border: none;
   color: #616161;
   align-items: center;
+  background-color: #fff;
 `;
 
 const TextContainer = styled.div`

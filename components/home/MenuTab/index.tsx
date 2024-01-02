@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useCallback, useState } from "react";
+import styled, { css } from "styled-components";
 
 interface IProps {
   list: { label: string; id: string }[];
@@ -19,7 +19,12 @@ function MenuTab({ list, onClick, currentTab, setCurrentTab }: IProps) {
   return (
     <Container>
       {list.map((item, i) => (
-        <Tab id={item.id} key={item.id} onClick={(e) => onClickHandler(e, i)} isCurrent={i === currentTab && true}>
+        <Tab
+          id={item.id}
+          key={item.id}
+          onClick={(e) => onClickHandler(e, i)}
+          isCurrent={i === currentTab && true}
+        >
           {item.label}
         </Tab>
       ))}

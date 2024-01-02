@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import styled from "styled-components";
 
@@ -18,24 +20,24 @@ function AddressInputBar({ onClick, placeHolder, value, setValue }: IProps) {
 
 export default React.memo(AddressInputBar);
 
-const Container = styled.button`
-  cursor: pointer;
+const Container = styled.div`
+  display: flex;
   width: 100%;
-  height: 40px;
-  padding: 0px 14px;
-  margin-bottom: 24px;
+  height: 48px;
+  border: 1px solid #616161;
   background: none;
-  border-width: 1px;
-  border-color: #616161;
   border-radius: 32px;
+  box-sizing: border-box;
   color: #616161;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
 `;
 
 const Input = styled.input`
   width: 100%;
-  height: 30px;
-  border-width: 0px;
-  caret-color: #616161;
+  border: none;
+  caret-color: #ffe977;
   color: #616161;
   &::placeholder {
     color: "#BDBDBD";

@@ -19,6 +19,7 @@ export default function SearchAddress() {
 
   const handleAddressList = async (keyword: string) => {
     const response = await getAddr(keyword);
+
     setAddressList(response);
   };
 
@@ -34,11 +35,13 @@ export default function SearchAddress() {
       </Head>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
-          <AddressInputBar
-            placeHolder="지번, 도로명, 건물명으로 검색"
-            value={searchKeyword}
-            setValue={onChangeKeyword}
-          />
+          <InputBarContainer>
+            <AddressInputBar
+              placeHolder="지번, 도로명, 건물명으로 검색"
+              value={searchKeyword}
+              setValue={onChangeKeyword}
+            />
+          </InputBarContainer>
           <AddressResultContainer addressList={addressList} />
         </ContentContainer>
       </GBLayout>
@@ -49,10 +52,19 @@ export default function SearchAddress() {
 const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
+  padding: 0 20px;
   box-sizing: border-box;
-  border-width: 1;
-  border-color: black;
+`;
+
+const InputBarContainer = styled.div`
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+`;
+
+const ResultBarContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 `;

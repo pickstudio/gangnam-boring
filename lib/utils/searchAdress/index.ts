@@ -10,7 +10,7 @@ export const getAddr = async (keyword: string) => {
     null,
     {
       params: {
-        confmKey: "devU01TX0FVVEgyMDIzMDkxMDA5NDE0NDExNDA4OTQ=",
+        confmKey: "devU01TX0FVVEgyMDIzMTIxMjE0NTkxNTExNDM1MDI=",
         currentPage: "1",
         countPerPage: "100",
         resultType: "json",
@@ -19,7 +19,7 @@ export const getAddr = async (keyword: string) => {
     }
   );
 
-  console.log(response.data.results.juso);
+  console.log(response, response.data.results.juso);
 
   return response.data.results.juso;
 };

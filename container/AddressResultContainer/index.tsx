@@ -1,7 +1,10 @@
-import AddressResultBar from "@/components/search/AddressResultBar";
-import { AddressType } from "@/interface/api/address";
+"use client";
+
 import React from "react";
 import styled from "styled-components";
+
+import AddressResultBar from "@/components/search/AddressResultBar";
+import { AddressType } from "@/interface/api/address";
 
 interface PropsType {
   addressList: AddressType[];
