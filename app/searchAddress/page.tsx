@@ -1,21 +1,27 @@
 "use client";
 
-import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import Head from "next/head";
 
 import styled from "styled-components";
+import { Icons } from "@/public/icon";
+
+import AddressResultContainer from "@/container/AddressResultContainer";
 
 import AddressInputBar from "@/components/search/AddressInputBar";
 import GBLayout from "@/components/base/GBLayout";
-import { Icons } from "@/public/icon";
+
 import { getAddr } from "@/lib/utils/searchAdress";
-import AddressResultContainer from "@/container/AddressResultContainer";
 import { AddressType } from "@/interface/api/address";
 
 export default function SearchAddress() {
   const [addressList, setAddressList] = useState<AddressType[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
+
+  const [hasBottomBorder, setHasBottomBorder] = useState<boolean>(false);
+
+  const resultContainerRef = useRef<HTMLDivElement>(null);
 
   const handleAddressList = async (keyword: string) => {
     const response = await getAddr(keyword);
@@ -33,6 +39,21 @@ export default function SearchAddress() {
     setAddressList([]);
   };
 
+  const handleScrollView = () => {
+    if (Number(resultContainerRef.current?.scrollTop) > 0)
+      setHasBottomBorder(true);
+    else setHasBottomBorder(false);
+  };
+
+  useEffect(() => {
+    resultContainerRef.current?.addEventListener("scroll", handleScrollView);
+    return () =>
+      resultContainerRef.current?.removeEventListener(
+        "scroll",
+        handleScrollView
+      );
+  }, []);
+
   return (
     <React.Fragment>
       <Head>
@@ -40,7 +61,7 @@ export default function SearchAddress() {
       </Head>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
-          <InputBarContainer>
+          <InputBarContainer hasBottomBorder={hasBottomBorder}>
             <AddressInputBar
               placeHolder="지번, 도로명, 건물명으로 검색"
               value={searchKeyword}
@@ -48,7 +69,7 @@ export default function SearchAddress() {
               clearSearchKeyword={clearSearchKeyword}
             />
           </InputBarContainer>
-          <ResultContainer>
+          <ResultContainer ref={resultContainerRef}>
             <AddressResultContainer addressList={addressList} />
           </ResultContainer>
         </ContentContainer>
@@ -64,11 +85,11 @@ const ContentContainer = styled.div`
   overflow: hidden;
 `;
 
-const InputBarContainer = styled.div`
+const InputBarContainer = styled.div<{ hasBottomBorder: boolean }>`
   width: 100%;
   padding: 32px 20px 16px;
-  border-bottom: 1px solid #dbdbdb;
   box-sizing: border-box;
+  ${(props) => props.hasBottomBorder && "border-bottom: 1px solid #dbdbdb"};
 `;
 
 const ResultContainer = styled.div`
