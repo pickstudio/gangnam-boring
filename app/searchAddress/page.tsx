@@ -28,6 +28,11 @@ export default function SearchAddress() {
     handleAddressList(e.target.value);
   };
 
+  const clearSearchKeyword = () => {
+    setSearchKeyword("");
+    setAddressList([]);
+  };
+
   return (
     <React.Fragment>
       <Head>
@@ -40,6 +45,7 @@ export default function SearchAddress() {
               placeHolder="지번, 도로명, 건물명으로 검색"
               value={searchKeyword}
               setValue={onChangeKeyword}
+              clearSearchKeyword={clearSearchKeyword}
             />
           </InputBarContainer>
           <ResultContainer>
