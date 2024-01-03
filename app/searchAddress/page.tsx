@@ -42,7 +42,9 @@ export default function SearchAddress() {
               setValue={onChangeKeyword}
             />
           </InputBarContainer>
-          <AddressResultContainer addressList={addressList} />
+          <ResultContainer>
+            <AddressResultContainer addressList={addressList} />
+          </ResultContainer>
         </ContentContainer>
       </GBLayout>
     </React.Fragment>
@@ -52,19 +54,21 @@ export default function SearchAddress() {
 const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 20px;
   box-sizing: border-box;
+  overflow: hidden;
 `;
 
 const InputBarContainer = styled.div`
   width: 100%;
-  margin-top: 32px;
-  margin-bottom: 16px;
+  padding: 32px 20px 16px;
+  border-bottom: 1px solid #dbdbdb;
   box-sizing: border-box;
 `;
 
-const ResultBarContainer = styled.div`
+const ResultContainer = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  padding: 20px 20px 100px;
+  overflow: scroll;
 `;
