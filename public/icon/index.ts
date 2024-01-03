@@ -42,6 +42,7 @@ import SubwayIcon from "./ic_subway.svg";
 import TagIcon from "./ic_tag.svg";
 import leftArrowIcon from "./ic_leftArrow.svg";
 import LocationIcon from "./ic_location.svg";
+import CurrentLocationIcon from "./ic_currentLocation.svg";
 
 export const Icons = {
   SvgElement: {
@@ -89,5 +90,6 @@ export const Icons = {
     subwayIcon: SubwayIcon,
     tagIcon: TagIcon,
     locationIcon: LocationIcon,
+    currentLocationIcon: CurrentLocationIcon,
   },
 };

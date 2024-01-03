@@ -14,6 +14,7 @@ import GBLayout from "@/components/base/GBLayout";
 
 import { getAddr } from "@/lib/utils/searchAdress";
 import { AddressType } from "@/interface/api/address";
+import { GBText } from "@/components/base";
 
 export default function SearchAddress() {
   const [addressList, setAddressList] = useState<AddressType[]>([]);
@@ -38,6 +39,8 @@ export default function SearchAddress() {
     setSearchKeyword("");
     setAddressList([]);
   };
+
+  const handlePosition = () => {};
 
   const handleScrollView = () => {
     if (Number(resultContainerRef.current?.scrollTop) > 0)
@@ -69,9 +72,22 @@ export default function SearchAddress() {
               clearSearchKeyword={clearSearchKeyword}
             />
           </InputBarContainer>
-          <ResultContainer ref={resultContainerRef}>
-            <AddressResultContainer addressList={addressList} />
-          </ResultContainer>
+          {addressList && Number(addressList.length) !== 0 ? (
+            <ResultContainer ref={resultContainerRef}>
+              <AddressResultContainer addressList={addressList} />
+            </ResultContainer>
+          ) : searchKeyword === "" ? (
+            <ButtonContainer>
+              <CurrentPositionButton onClick={handlePosition}>
+                <LocationIcon />
+                <TextContainer>
+                  <GBText caption01>{"현재위치로 설정"}</GBText>
+                </TextContainer>
+              </CurrentPositionButton>
+            </ButtonContainer>
+          ) : (
+            <></>
+          )}
         </ContentContainer>
       </GBLayout>
     </React.Fragment>
@@ -98,4 +114,31 @@ const ResultContainer = styled.div`
   box-sizing: border-box;
   padding: 20px 20px 100px;
   overflow: scroll;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
+
+const CurrentPositionButton = styled.button`
+  display: flex;
+  height: 36px;
+  background-color: #ffe977;
+  border-radius: 20px;
+  padding: 0 20px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LocationIcon = styled(Icons.SvgElement.currentLocationIcon)`
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+`;
+
+const TextContainer = styled.div`
+  padding-top: 1px;
 `;
