@@ -8,19 +8,23 @@ import Header from "@/components/base/Header";
 interface IProps {
   children: React.ReactNode;
   header?: boolean;
+  logo?: boolean;
   bottomNavigation?: boolean;
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
+  backgroundColor?: string;
 }
 
 function GBLayout({
   children,
   header,
+  logo,
   bottomNavigation,
   headerLeftIcon,
   headerRightIcon,
   headerMyPageIcon,
+  backgroundColor,
 }: IProps): React.ReactElement {
   React.useEffect(() => {
     function resizeHeightForIOS() {
@@ -37,12 +41,13 @@ function GBLayout({
   }, []);
 
   return (
-    <Container>
+    <Container backgroundColor={backgroundColor ?? "#fff"}>
       {header && (
         <Header
           headerLeftIcon={headerLeftIcon}
           headerRightIcon={headerRightIcon}
           headerMyPageIcon={headerMyPageIcon}
+          logo={logo}
         />
       )}
       <ContentContainer>{children}</ContentContainer>
@@ -52,7 +57,7 @@ function GBLayout({
 
 export default GBLayout;
 
-const Container = styled.div`
+const Container = styled.div<{ backgroundColor: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,6 +67,7 @@ const Container = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
   overflow: hidden;
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 const ContentContainer = styled.div`

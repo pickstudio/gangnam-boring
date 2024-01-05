@@ -35,7 +35,7 @@ export default function Home() {
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
-      <GBLayout header headerRightIcon>
+      <GBLayout header logo backgroundColor="#fff0da">
         <Container ref={option1Ref}>
           <TextContainer>
             <TitleBox>

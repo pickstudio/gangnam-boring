@@ -8,12 +8,18 @@ import { HEADER_CONFIG } from "@/config";
 import { GBText } from "@/components/base";
 
 export interface IProps {
+  logo?: boolean;
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
 }
 
-function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
+function Header({
+  logo = false,
+  headerLeftIcon,
+  headerRightIcon,
+  headerMyPageIcon,
+}: IProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -22,17 +28,21 @@ function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
 
   return (
     <Container>
-      <ContentContainer>
-        <IconContainer onClick={() => router.back()}>
-          {headerLeftIcon && <Icons.SvgElement.leftArrowIcon />}
-        </IconContainer>
-        <TitleContainer>
-          <GBText body01>{title}</GBText>
-        </TitleContainer>
-        <IconContainer>
-          {headerRightIcon && <Icons.SvgElement.uploadIcon />}
-        </IconContainer>
-      </ContentContainer>
+      {logo ? (
+        <LogoImage />
+      ) : (
+        <ContentContainer>
+          <IconContainer onClick={() => router.back()}>
+            {headerLeftIcon && <Icons.SvgElement.leftArrowIcon />}
+          </IconContainer>
+          <TitleContainer>
+            <GBText body01>{title}</GBText>
+          </TitleContainer>
+          <IconContainer>
+            {headerRightIcon && <Icons.SvgElement.uploadIcon />}
+          </IconContainer>
+        </ContentContainer>
+      )}
     </Container>
   );
 }
@@ -40,9 +50,7 @@ function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
+  background-color: none;
   max-width: 768px;
   width: 100%;
 `;
@@ -71,6 +79,11 @@ const IconContainer = styled.div`
 
 const TitleContainer = styled.div`
   padding-top: 2px;
+`;
+
+const LogoImage = styled(Icons.SvgElement.horizontalLogo)`
+  height: 34px;
+  margin: 20px 20px 20px;
 `;
 
 export default React.memo(Header);

@@ -1,5 +1,6 @@
 //Header
 import UploadIcon from "./ic_upload.svg";
+import HorizontalLogo from "./ic_logoHorizontal.svg";
 
 // Main
 import MainTitleImage from "./img_mainTitle.svg";
@@ -51,6 +52,7 @@ export const Icons = {
     subTitleImage: SubTitleImage,
     logoImage: LogoImage,
     nomoreImage: NomoreImage,
+    horizontalLogo: HorizontalLogo,
 
     // Random
     randomSubTitleImage: RandomSubTitleImage,
