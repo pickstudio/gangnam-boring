@@ -58,8 +58,8 @@ function Header({
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: none;
   max-width: 768px;
+  background-color: rgba(255, 255, 255, 0);
   width: 100%;
 `;
 

@@ -47,26 +47,28 @@ function GBLayout({
   }, []);
 
   return (
-    <Container color={color ?? "#fff"}>
-      {header && (
-        <Header
-          headerLeftIcon={headerLeftIcon}
-          headerRightIcon={headerRightIcon}
-          headerMyPageIcon={headerMyPageIcon}
-          logo={logo}
-          showTitle={showTitle}
-          onClickLeftIcon={onClickLeftIcon}
-          onClickRightIcon={onClickRightIcon}
-        />
-      )}
-      <ContentContainer>{children}</ContentContainer>
+    <Container>
+      <ContentContainer color={color ?? "#fff"}>
+        {header && (
+          <Header
+            headerLeftIcon={headerLeftIcon}
+            headerRightIcon={headerRightIcon}
+            headerMyPageIcon={headerMyPageIcon}
+            logo={logo}
+            showTitle={showTitle}
+            onClickLeftIcon={onClickLeftIcon}
+            onClickRightIcon={onClickRightIcon}
+          />
+        )}
+        {children}
+      </ContentContainer>
     </Container>
   );
 }
 
 export default GBLayout;
 
-const Container = styled.div<{ color: string }>`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,10 +78,9 @@ const Container = styled.div<{ color: string }>`
   margin: 0 auto;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: ${(props) => props.color};
 `;
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ color: string }>`
   display: flex;
   flex-direction: column;
   overflow: overlay;
@@ -87,6 +88,7 @@ const ContentContainer = styled.div`
   max-width: 768px;
   width: 100%;
   height: 100%;
+  background-color: ${(props) => props.color};
   ::-webkit-scrollbar {
     display: none;
   }
