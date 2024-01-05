@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icons } from "@/public/icon";
+import Link from "next/link";
 
 interface DepartureIProps {
   id: number;
@@ -46,9 +47,11 @@ function RecommendTabContainer(): React.ReactElement {
         <GBButton>
           <Icons.SvgElement.departureAddIcon />
         </GBButton>
-        <GBButton>
-          <Icons.SvgElement.recommendBtnImage />
-        </GBButton>
+        <Link href={"/midPoint"}>
+          <GBButton>
+            <Icons.SvgElement.recommendBtnImage />
+          </GBButton>
+        </Link>
       </BoxContainer>
     </Container>
   );
