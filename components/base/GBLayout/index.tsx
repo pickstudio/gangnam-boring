@@ -9,11 +9,14 @@ interface IProps {
   children: React.ReactNode;
   header?: boolean;
   logo?: boolean;
+  color?: string;
   bottomNavigation?: boolean;
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
-  color?: string;
+  showTitle?: boolean;
+  onClickLeftIcon?: () => void;
+  onClickRightIcon?: () => void;
 }
 
 function GBLayout({
@@ -25,6 +28,9 @@ function GBLayout({
   headerRightIcon,
   headerMyPageIcon,
   color,
+  showTitle = true,
+  onClickLeftIcon,
+  onClickRightIcon,
 }: IProps): React.ReactElement {
   React.useEffect(() => {
     function resizeHeightForIOS() {
@@ -48,6 +54,9 @@ function GBLayout({
           headerRightIcon={headerRightIcon}
           headerMyPageIcon={headerMyPageIcon}
           logo={logo}
+          showTitle={showTitle}
+          onClickLeftIcon={onClickLeftIcon}
+          onClickRightIcon={onClickRightIcon}
         />
       )}
       <ContentContainer>{children}</ContentContainer>

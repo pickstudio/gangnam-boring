@@ -47,12 +47,25 @@ export default function Home() {
       );
   }, []);
 
+  const shareLink = () => {};
+
+  const onClickHeaderRightIcon = () => {
+    shareLink();
+  };
+
   return (
     <React.Fragment>
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
-      <GBLayout header logo={shouldShowLogo} color="#fff0da">
+      <GBLayout
+        header
+        logo={shouldShowLogo}
+        showTitle={false}
+        headerRightIcon
+        onClickRightIcon={onClickHeaderRightIcon}
+        color="#fff0da"
+      >
         <Container ref={contentContainerRef}>
           <TextContainer>
             <TitleBox>

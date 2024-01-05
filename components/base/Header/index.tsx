@@ -12,13 +12,19 @@ export interface IProps {
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
+  showTitle?: boolean;
+  onClickLeftIcon?: () => void;
+  onClickRightIcon?: () => void;
 }
 
 function Header({
   logo = false,
+  showTitle = true,
   headerLeftIcon,
   headerRightIcon,
   headerMyPageIcon,
+  onClickLeftIcon,
+  onClickRightIcon,
 }: IProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -26,19 +32,21 @@ function Header({
   const basicPath = "/" + pathname.split("/")[1];
   const title = HEADER_CONFIG[basicPath]?.name ?? "";
 
+  const goBack = () => router.back();
+
   return (
     <Container>
       {logo ? (
         <LogoImage />
       ) : (
         <ContentContainer>
-          <IconContainer onClick={() => router.back()}>
+          <IconContainer onClick={onClickLeftIcon ?? goBack}>
             {headerLeftIcon && <Icons.SvgElement.leftArrowIcon />}
           </IconContainer>
           <TitleContainer>
-            <GBText body01>{title}</GBText>
+            {showTitle && <GBText body01>{title}</GBText>}
           </TitleContainer>
-          <IconContainer>
+          <IconContainer onClick={onClickRightIcon}>
             {headerRightIcon && <Icons.SvgElement.uploadIcon />}
           </IconContainer>
         </ContentContainer>
