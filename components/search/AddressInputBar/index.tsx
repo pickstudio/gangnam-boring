@@ -53,15 +53,19 @@ export default React.memo(AddressInputBar);
 
 const Container = styled.div`
   display: flex;
+  box-sizing: border-box;
+
   width: 100%;
   height: 48px;
+  padding: 0 20px;
+
   align-items: center;
   background: none;
   color: #616161;
-  box-sizing: border-box;
+
   border-radius: 32px;
-  padding: 0 20px;
   border: 1px solid #dbdbdb;
+
   &:focus-within {
     outline: 1px solid #3e3e3e;
   }

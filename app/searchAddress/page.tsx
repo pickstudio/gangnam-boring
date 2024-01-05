@@ -86,7 +86,9 @@ export default function SearchAddress() {
               </CurrentPositionButton>
             </ButtonContainer>
           ) : (
-            <></>
+            <ImageContainer>
+              <ImageA />
+            </ImageContainer>
           )}
         </ContentContainer>
       </GBLayout>
@@ -97,7 +99,7 @@ export default function SearchAddress() {
 const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
+  box-sizing: content-box;
   overflow: hidden;
 `;
 
@@ -141,4 +143,20 @@ const LocationIcon = styled(Icons.SvgElement.currentLocationIcon)`
 
 const TextContainer = styled.div`
   padding-top: 1px;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  height: 100%;
+  position: relative;
+`;
+
+const ImageA = styled.div`
+  width: 132px;
+  height: 132px;
+  background-color: #24ff0033;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
