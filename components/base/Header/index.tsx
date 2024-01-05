@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
-import styled from 'styled-components';
-import { usePathname, useRouter } from 'next/navigation';
-import { Icons } from '@/public/icon';
-import { HEADER_CONFIG } from '@/config';
-import { GBText } from '@/components/base';
+import React from "react";
+import styled from "styled-components";
+import { usePathname, useRouter } from "next/navigation";
+import { Icons } from "@/public/icon";
+import { HEADER_CONFIG } from "@/config";
+import { GBText } from "@/components/base";
 
 export interface IProps {
   headerLeftIcon?: boolean;
@@ -17,17 +17,21 @@ function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const basicPath = '/' + pathname.split('/')[1];
-  const title = HEADER_CONFIG[basicPath]?.name ?? '';
+  const basicPath = "/" + pathname.split("/")[1];
+  const title = HEADER_CONFIG[basicPath]?.name ?? "";
 
   return (
     <Container>
       <ContentContainer>
         <IconContainer onClick={() => router.back()}>
-          {/* {headerLeftIcon && <Icons.SvgElement.closeIcon />} */}
+          {headerLeftIcon && <Icons.SvgElement.leftArrowIcon />}
         </IconContainer>
-        {/* <GBText body01>{title}</GBText> */}
-        <IconContainer>{headerRightIcon && <Icons.SvgElement.uploadIcon />}</IconContainer>
+        <TitleContainer>
+          <GBText body01>{title}</GBText>
+        </TitleContainer>
+        <IconContainer>
+          {headerRightIcon && <Icons.SvgElement.uploadIcon />}
+        </IconContainer>
       </ContentContainer>
     </Container>
   );
@@ -39,7 +43,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: #fff0da;
   max-width: 768px;
   width: 100%;
 `;
@@ -57,9 +60,17 @@ const ContentContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 24px;
   height: 24px;
   cursor: pointer;
+`;
+
+const TitleContainer = styled.div`
+  padding-top: 2px;
 `;
 
 export default React.memo(Header);

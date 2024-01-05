@@ -62,7 +62,7 @@ export default function SearchAddress() {
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
-      <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
+      <GBLayout header headerLeftIcon>
         <ContentContainer>
           <InputBarContainer hasBottomBorder={hasBottomBorder}>
             <AddressInputBar
@@ -105,7 +105,7 @@ const ContentContainer = styled.div`
 
 const InputBarContainer = styled.div<{ hasBottomBorder: boolean }>`
   width: 100%;
-  padding: 32px 20px 16px;
+  padding: 16px 20px 16px;
   box-sizing: border-box;
   ${(props) => props.hasBottomBorder && "border-bottom: 1px solid #dbdbdb"};
 `;
