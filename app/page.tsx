@@ -13,7 +13,9 @@ import RecommendTabContainer from "@/container/RecommendTabContainer";
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState<number>(0);
-  const option1Ref = useRef<HTMLDivElement | null>(null);
+  const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
+
+  const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const tabList = [
     {
@@ -30,13 +32,28 @@ export default function Home() {
     console.log("e");
   };
 
+  const handleScrollView = () => {
+    if (Number(contentContainerRef.current?.scrollTop) > 200)
+      setShouldShowLogo(true);
+    else setShouldShowLogo(false);
+  };
+
+  useEffect(() => {
+    contentContainerRef.current?.addEventListener("scroll", handleScrollView);
+    return () =>
+      contentContainerRef.current?.removeEventListener(
+        "scroll",
+        handleScrollView
+      );
+  }, []);
+
   return (
     <React.Fragment>
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
-      <GBLayout header logo backgroundColor="#fff0da">
-        <Container ref={option1Ref}>
+      <GBLayout header logo={shouldShowLogo} color="#fff0da">
+        <Container ref={contentContainerRef}>
           <TextContainer>
             <TitleBox>
               <Icons.SvgElement.subTitleImage />
@@ -55,8 +72,12 @@ export default function Home() {
             list={tabList}
             onClick={handleClickTab}
           />
+          {currentTab === 0 ? (
+            <RandomTabContainer />
+          ) : (
+            <RecommendTabContainer />
+          )}
         </Container>
-        {currentTab === 0 ? <RandomTabContainer /> : <RecommendTabContainer />}
       </GBLayout>
     </React.Fragment>
   );
@@ -65,6 +86,7 @@ export default function Home() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: scroll;
   width: 100%;
   height: 100%;
   box-sizing: border-box;

@@ -13,7 +13,7 @@ interface IProps {
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
-  backgroundColor?: string;
+  color?: string;
 }
 
 function GBLayout({
@@ -24,7 +24,7 @@ function GBLayout({
   headerLeftIcon,
   headerRightIcon,
   headerMyPageIcon,
-  backgroundColor,
+  color,
 }: IProps): React.ReactElement {
   React.useEffect(() => {
     function resizeHeightForIOS() {
@@ -41,7 +41,7 @@ function GBLayout({
   }, []);
 
   return (
-    <Container backgroundColor={backgroundColor ?? "#fff"}>
+    <Container color={color ?? "#fff"}>
       {header && (
         <Header
           headerLeftIcon={headerLeftIcon}
@@ -57,7 +57,7 @@ function GBLayout({
 
 export default GBLayout;
 
-const Container = styled.div<{ backgroundColor: string }>`
+const Container = styled.div<{ color: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,7 +67,7 @@ const Container = styled.div<{ backgroundColor: string }>`
   margin: 0 auto;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.color};
 `;
 
 const ContentContainer = styled.div`
