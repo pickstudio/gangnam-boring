@@ -1,44 +1,97 @@
-import * as React from 'react';
-import styled from 'styled-components';
+"use client";
 
-interface IProps {
+import * as React from "react";
+import styled from "styled-components";
+
+import { Icons } from "@/public/icon";
+
+interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onClick?: (event?: React.MouseEvent<HTMLElement>) => void;
-  color?: string;
+  value: string;
   placeHolder?: string;
+  setValue: React.ChangeEventHandler<HTMLInputElement>;
+  clearSearchKeyword: () => void;
 }
 
-function AddressInputBar({ onClick, placeHolder }: IProps) {
+function AddressInputBar({
+  onClick,
+  placeHolder,
+  value,
+  setValue,
+  clearSearchKeyword,
+}: IProps) {
+  const [focused, setFocused] = React.useState(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const onClockClearButton = () => {
+    clearSearchKeyword();
+    inputRef.current && inputRef.current.focus();
+  };
+
+  const handleInputFocus = (currentFocused: boolean) => () => {
+    setTimeout(() => {
+      setFocused(currentFocused);
+    }, 0);
+  };
+
   return (
     <Container onClick={onClick}>
-      <Input placeholder={placeHolder}></Input>
+      <Input
+        placeholder={placeHolder}
+        ref={inputRef}
+        onFocus={handleInputFocus(true)}
+        onBlur={handleInputFocus(false)}
+        value={value}
+        onChange={setValue}
+      />
+      {focused && value && <IconImage onClick={onClockClearButton} />}
     </Container>
   );
 }
 
 export default React.memo(AddressInputBar);
 
-const Container = styled.button`
-  cursor: pointer;
+const Container = styled.div`
+  display: flex;
+  box-sizing: border-box;
+
   width: 100%;
-  height: 40px;
-  padding: 0px 14px;
+  height: 48px;
+  padding: 0 20px;
+
+  align-items: center;
   background: none;
-  border-width: 1px;
-  border-color: #616161;
-  border-radius: 8px;
   color: #616161;
+
+  border-radius: 32px;
+  border: 1px solid #dbdbdb;
+
+  &:focus-within {
+    outline: 1px solid #3e3e3e;
+  }
 `;
 
 const Input = styled.input`
   width: 100%;
-  height: 30px;
-  border-width: 0px;
-  caret-color: #616161;
+  border: none;
+  caret-color: #ffe977;
   color: #616161;
-  &::placeholder{
-    color: "#BDBDBD";
+  &::placeholder {
+    color: #9e9e9e;
   }
   &:focus {
     outline: none;
+  }
+`;
+
+const IconImage = styled(Icons.SvgElement.closeIcon)`
+  width: 20px;
+  height: 20px;
+  margin-left: 12px;
+  & rect {
+    fill: #455b92;
+  }
+  & path {
+    fill: #fff;
   }
 `;

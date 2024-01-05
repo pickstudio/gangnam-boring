@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import styled, { keyframes } from "styled-components";
