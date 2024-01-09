@@ -9,55 +9,12 @@ import share from "@/lib/utils/client/share";
 
 import GBLayout from "@/components/base/GBLayout";
 import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
-import { TransportationType } from "@/interface/view/map";
+import { MidPointDummyResponse } from "@/api/dummy/response";
 
 const latitude = 33.45079660685329;
 const longitude = 126.57230632373583;
 
-const transportInfoArray = [
-  {
-    totalTimeCost: 10,
-    numberOfTransfer: 2,
-    timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3,
-    transportation: "BUS" as TransportationType,
-  },
-  {
-    totalTimeCost: 10,
-    numberOfTransfer: 2,
-    timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3,
-    transportation: "BUS" as TransportationType,
-  },
-  {
-    totalTimeCost: 10,
-    numberOfTransfer: 2,
-    timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3,
-    transportation: "BUS" as TransportationType,
-  },
-  {
-    totalTimeCost: 10,
-    numberOfTransfer: 2,
-    timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3,
-    transportation: "BUS" as TransportationType,
-  },
-  {
-    totalTimeCost: 10,
-    numberOfTransfer: 2,
-    timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3,
-    transportation: "BUS" as TransportationType,
-  },
-  {
-    totalTimeCost: 10,
-    numberOfTransfer: 2,
-    timeCostOfPublicTransfer: 3,
-    timeCostOfCar: 3,
-    transportation: "BUS" as TransportationType,
-  },
-];
+const transportInfoArray = MidPointDummyResponse;
 
 export default function MidPoint() {
   React.useEffect(() => {
@@ -96,14 +53,18 @@ export default function MidPoint() {
     <React.Fragment>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
-          <InfoCardContainer>
-            <MidPointInfoCard
-              title={"용답역"}
-              timeCost={0}
-              onClickShare={() => {}}
-              transportInfoArray={transportInfoArray}
-            />
-          </InfoCardContainer>
+          {transportInfoArray.map((item, idx) => {
+            return (
+              <InfoCardContainer key={`${item.midPointStation}-${idx}`}>
+                <MidPointInfoCard
+                  title={item.midPointStation}
+                  timeCost={item.averageTimeCost}
+                  onClickShare={() => {}}
+                  transportInfoArray={item.waysToStation}
+                />
+              </InfoCardContainer>
+            );
+          })}
           <MapContainer id="map" />
         </ContentContainer>
       </GBLayout>

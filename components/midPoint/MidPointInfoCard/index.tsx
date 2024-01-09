@@ -6,20 +6,13 @@ import TransportInfoBar from "../TransportInfoBar";
 import { Icons } from "@/public/icon";
 import { GBButton } from "@/components/base";
 import { TransportationType } from "@/interface/view/map";
+import { WayToStationType } from "@/interface/api/midPoint";
 
 interface IProps {
   title: string;
   timeCost: number;
-  transportInfoArray: ITransportInfo[];
+  transportInfoArray: WayToStationType[];
   onClickShare: () => void;
-}
-
-interface ITransportInfo {
-  totalTimeCost: number;
-  numberOfTransfer?: number;
-  timeCostOfPublicTransfer?: number;
-  timeCostOfCar?: number;
-  transportation: TransportationType;
 }
 
 function MidPointInfoCard({
@@ -41,11 +34,11 @@ function MidPointInfoCard({
       <SubTitleText>{`평균 ${timeCost}분`}</SubTitleText>
       {transportInfoArray.map((item, index) => {
         return (
-          <React.Fragment key={`${item.totalTimeCost} + ${index}`}>
+          <React.Fragment key={`${item.timeCost} + ${index}`}>
             <TransportInfoBar
               index={index}
               orderOfRoute={index + 1}
-              totalTimeCost={item.totalTimeCost}
+              totalTimeCost={item.timeCost}
               numberOfTransfer={item.numberOfTransfer}
               transportation={item.transportation}
             />
