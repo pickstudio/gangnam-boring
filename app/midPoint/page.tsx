@@ -9,6 +9,7 @@ import share from "@/lib/utils/client/share";
 
 import GBLayout from "@/components/base/GBLayout";
 import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
+import { TransportationType } from "@/interface/view/map";
 
 const latitude = 33.45079660685329;
 const longitude = 126.57230632373583;
@@ -19,36 +20,42 @@ const transportInfoArray = [
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
     timeCostOfCar: 3,
+    transportation: "BUS" as TransportationType,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
     timeCostOfCar: 3,
+    transportation: "BUS" as TransportationType,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
     timeCostOfCar: 3,
+    transportation: "BUS" as TransportationType,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
     timeCostOfCar: 3,
+    transportation: "BUS" as TransportationType,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
     timeCostOfCar: 3,
+    transportation: "BUS" as TransportationType,
   },
   {
     totalTimeCost: 10,
     numberOfTransfer: 2,
     timeCostOfPublicTransfer: 3,
     timeCostOfCar: 3,
+    transportation: "BUS" as TransportationType,
   },
 ];
 

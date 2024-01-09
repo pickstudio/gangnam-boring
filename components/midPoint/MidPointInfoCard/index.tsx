@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Icons } from "@/public/icon";
 import TransportInfoBar from "../TransportInfoBar";
+
+import { Icons } from "@/public/icon";
 import { GBButton } from "@/components/base";
+import { TransportationType } from "@/interface/view/map";
 
 interface IProps {
   title: string;
@@ -17,6 +19,7 @@ interface ITransportInfo {
   numberOfTransfer?: number;
   timeCostOfPublicTransfer?: number;
   timeCostOfCar?: number;
+  transportation: TransportationType;
 }
 
 function MidPointInfoCard({
@@ -35,20 +38,19 @@ function MidPointInfoCard({
           </GBButton>
         </ShareButtonContainer>
       </TitleContainer>
-      <SubTitleText>{`평균 이동 시간 ${timeCost}분`}</SubTitleText>
+      <SubTitleText>{`평균 ${timeCost}분`}</SubTitleText>
       {transportInfoArray.map((item, index) => {
         return (
-          <>
+          <React.Fragment key={`${item.totalTimeCost} + ${index}`}>
             <TransportInfoBar
-              key={`${item.totalTimeCost} + ${index}`}
+              index={index}
               orderOfRoute={index + 1}
               totalTimeCost={item.totalTimeCost}
               numberOfTransfer={item.numberOfTransfer}
-              timeCostOfPublicTransfer={item.timeCostOfPublicTransfer}
-              timeCostOfCar={item.timeCostOfCar}
+              transportation={item.transportation}
             />
             {index !== transportInfoArray.length ? <Divider /> : null}
-          </>
+          </React.Fragment>
         );
       })}
     </Container>
