@@ -8,8 +8,8 @@ import { Icons } from "@/public/icon";
 import share from "@/lib/utils/client/share";
 
 import GBLayout from "@/components/base/GBLayout";
-import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
 import { MidPointDummyResponse } from "@/api/dummy/response";
+import MidPointListContainer from "@/container/MidPointListContainer";
 
 const latitude = 33.45079660685329;
 const longitude = 126.57230632373583;
@@ -53,18 +53,9 @@ export default function MidPoint() {
     <React.Fragment>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
-          {transportInfoArray.map((item, idx) => {
-            return (
-              <InfoCardContainer key={`${item.midPointStation}-${idx}`}>
-                <MidPointInfoCard
-                  title={item.midPointStation}
-                  timeCost={item.averageTimeCost}
-                  onClickShare={() => {}}
-                  transportInfoArray={item.waysToStation}
-                />
-              </InfoCardContainer>
-            );
-          })}
+          <InfoCardContainer>
+            <MidPointListContainer transportInfoArray={transportInfoArray} />
+          </InfoCardContainer>
           <MapContainer id="map" />
         </ContentContainer>
       </GBLayout>
@@ -75,6 +66,7 @@ export default function MidPoint() {
 const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
@@ -87,8 +79,10 @@ const MapContainer = styled.div`
 `;
 
 const InfoCardContainer = styled.div`
+  width: 100%;
+  display: flex;
   position: absolute;
+  z-index: 100;
   bottom: 20px;
-  z-index: 10;
-  padding-left: 20px;
+  overflow: scroll;
 `;
