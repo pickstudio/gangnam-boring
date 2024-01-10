@@ -91,7 +91,7 @@ const TitleContainer = styled.div`
 
 const LogoImage = styled(Icons.SvgElement.horizontalLogo)`
   height: 34px;
-  margin: 20px 20px 20px;
+  margin: 20px 20px 0 32px;
 `;
 
 export default React.memo(Header);

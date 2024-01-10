@@ -37,7 +37,6 @@ const Container = styled.div`
   flex-direction: row;
   height: 56px;
   background-color: #fff0da;
-
   justify-content: center;
 `;
 
@@ -48,6 +47,7 @@ const commonTabStyle = css`
   font-family: "GmarketSansMedium";
   align-items: center;
   justify-content: center;
+  padding: 18px 0;
 `;
 
 const currentTabStyle = css`
