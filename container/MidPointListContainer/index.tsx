@@ -1,9 +1,6 @@
 "use client";
 
 import styled from "styled-components";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-
-import "react-horizontal-scrolling-menu/dist/styles.css";
 
 import MidPointInfoCard from "@/components/midPoint/MidPointInfoCard";
 import { MidPointAPIResponseType } from "@/interface/api/midPoint";
@@ -17,7 +14,7 @@ export default function MidPointListContainer({
   transportInfoArray,
 }: MidPointListProps) {
   return (
-    <ScrollMenu onScroll={(api, e) => console.log(e)}>
+    <InfoCardContainer>
       {transportInfoArray.map((item: MidPointAPIResponseType, idx) => (
         <CardContainer key={`${item.midPointStation}-${idx}`}>
           <MidPointInfoCard
@@ -28,10 +25,23 @@ export default function MidPointListContainer({
           />
         </CardContainer>
       ))}
-    </ScrollMenu>
+    </InfoCardContainer>
   );
 }
 
 const CardContainer = styled.div`
   padding-left: 20px;
+
+  &:last-child {
+    padding-right: 20px;
+  }
+`;
+
+const InfoCardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  overflow: scroll;
 `;

@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Head from "next/head";
 
 import styled from "styled-components";
 import { Icons } from "@/public/icon";
@@ -53,9 +52,7 @@ export default function MidPoint() {
     <React.Fragment>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
-          <InfoCardContainer>
-            <MidPointListContainer transportInfoArray={transportInfoArray} />
-          </InfoCardContainer>
+          <MidPointListContainer transportInfoArray={transportInfoArray} />
           <MapContainer id="map" />
         </ContentContainer>
       </GBLayout>
@@ -76,13 +73,4 @@ const ContentContainer = styled.div`
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const InfoCardContainer = styled.div`
-  width: 100%;
-  display: flex;
-  position: absolute;
-  z-index: 100;
-  bottom: 20px;
-  overflow: scroll;
 `;
