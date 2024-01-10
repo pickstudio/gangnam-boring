@@ -13,6 +13,8 @@ import RandomSubTitleImage from "./img_randomSubTitle.svg";
 import RandomTitleImage from "./img_randomTitle.svg";
 import RestartBtnImage from "./img_restartBtn.svg";
 import ShareBtnImage from "./img_shareBtn.svg";
+import StationImage from "./img_station.svg";
+import OkayImage from "./img_okay.svg";
 
 // Recommend
 import DepartureImage from "./img_departure.svg";
@@ -59,6 +61,8 @@ export const Icons = {
     randomTitleImage: RandomTitleImage,
     restartBtnImage: RestartBtnImage,
     shareBtnImage: ShareBtnImage,
+    stationImage: StationImage,
+    okayImage: OkayImage,
 
     // Recommend
     departureImage: DepartureImage,

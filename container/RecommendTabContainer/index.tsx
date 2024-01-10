@@ -4,54 +4,30 @@ import styled from "styled-components";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icons } from "@/public/icon";
-import Link from "next/link";
 
-interface DepartureIProps {
-  id: number;
-  departure: string;
-}
+function RandomTabContainer(): React.ReactElement {
+  const [url, setUrl] = useState<string>("");
 
-function RecommendTabContainer(): React.ReactElement {
-  const defaultArray = [
-    {
-      id: 0,
-      departure: "",
-    },
-  ];
-  const [departureList, setDepartureList] =
-    useState<DepartureIProps[]>(defaultArray);
+  useEffect(() => {
+    setUrl(location.href);
+  }, []);
 
   return (
     <Container>
       <ImageContainer>
-        <Icons.SvgElement.departureImage />
-        <Icons.SvgElement.togetherAddImage />
+        <Icons.SvgElement.randomTitleImage />
+        <Icons.SvgElement.randomSubTitleImage />
       </ImageContainer>
-      <BodyContainer>
-        {departureList.map((item, index) => (
-          <TextBox key={index}>
-            {item.departure !== "" ? (
-              <GBText fontFamily="GmarketSansMedium" body03 color="#000000">
-                {item.departure}
-              </GBText>
-            ) : (
-              <GBText fontFamily="GmarketSansMedium" body03 color="#9E9E9E">
-                {"어디서 출발함?"}
-              </GBText>
-            )}
-          </TextBox>
-        ))}
-      </BodyContainer>
 
       <BoxContainer>
-        <GBButton>
-          <Icons.SvgElement.departureAddIcon />
-        </GBButton>
-        <Link href={"/midPoint"}>
-          <GBButton>
-            <Icons.SvgElement.recommendBtnImage />
-          </GBButton>
-        </Link>
+        <ButtonContainer>
+          <CopyToClipboard text={url}>
+            <Icons.SvgElement.shareBtnImage />
+          </CopyToClipboard>
+        </ButtonContainer>
+        <ButtonContainer>
+          <Icons.SvgElement.restartBtnImage />
+        </ButtonContainer>
       </BoxContainer>
     </Container>
   );
@@ -59,7 +35,6 @@ function RecommendTabContainer(): React.ReactElement {
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
   height: 100%;
   flex-direction: column;
   align-items: center;
@@ -67,34 +42,24 @@ const Container = styled.div`
 `;
 const ImageContainer = styled.div`
   display: flex;
-  width: 338px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 0 24px 0;
-`;
-const BodyContainer = styled.div`
-  height: 296px;
-  display: flex;
   flex-direction: column;
-`;
-
-const TextBox = styled.div`
-  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 338px;
-  height: 48px;
-  border: 1.5px solid #dbdbdb;
-  padding: 0 20px;
-  border-radius: 32px;
-  box-sizing: border-box;
+  margin-top: 40px;
+  margin-bottom: 52px;
 `;
 
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 100%;
+  height: 140px;
 `;
 
-export default React.memo(RecommendTabContainer);
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+`;
+
+export default React.memo(RandomTabContainer);

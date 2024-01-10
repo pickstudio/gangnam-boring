@@ -1,12 +1,47 @@
 import { GBButton, GBText } from "@/components/base";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import SlotCounter, { SlotCounterRef } from "react-slot-counter";
+import "./index.css";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icons } from "@/public/icon";
 
 function RandomTabContainer(): React.ReactElement {
   const [url, setUrl] = useState<string>("");
+  const counterRef = useRef<SlotCounterRef>(null);
+
+  const dummyCharacters = [
+    <SlotTextContainer key={0}>
+      <GBText headline02>{"강남역"}</GBText>
+      <GBText body02 color={"#9E9E9E"}>
+        {"GangNam"}
+      </GBText>
+    </SlotTextContainer>,
+    <SlotTextContainer key={1}>
+      <GBText headline02>{"홍대입구역"}</GBText>
+      <GBText body02 color={"#9E9E9E"}>
+        {"Hongik Univ."}
+      </GBText>
+    </SlotTextContainer>,
+    <SlotTextContainer key={2}>
+      <GBText headline02>{"성수역"}</GBText>
+      <GBText body02 color={"#9E9E9E"}>
+        {"Seongsu"}
+      </GBText>
+    </SlotTextContainer>,
+    <SlotTextContainer key={3}>
+      <GBText headline02>{"압구정로데오역"}</GBText>
+      <GBText body02 color={"#9E9E9E"}>
+        {"Apgujeong Rodeo"}
+      </GBText>
+    </SlotTextContainer>,
+  ];
+
+  const onClick = () => {
+    console.log(counterRef);
+    counterRef.current?.startAnimation();
+  };
 
   useEffect(() => {
     setUrl(location.href);
@@ -18,7 +53,37 @@ function RandomTabContainer(): React.ReactElement {
         <Icons.SvgElement.randomTitleImage />
         <Icons.SvgElement.randomSubTitleImage />
       </ImageContainer>
-      <BodyContainer></BodyContainer>
+      <IconContainer>
+        <Icons.SvgElement.okayImage />
+      </IconContainer>
+      <BodyContainer>
+        <IconContainer>
+          <Icons.SvgElement.stationImage />
+        </IconContainer>
+        <SlotContainer>
+          <SlotCounter
+            charClassName={"slot-char"}
+            ref={counterRef}
+            startValueOnce={true}
+            autoAnimationStart={false}
+            // startValue={[
+            //   <SlotContainer key={"1"}>
+            //     <GBText>강남역</GBText>
+            //     {/* <GBText>GangNam Station</GBText> */}
+            //   </SlotContainer>,
+            // ]}
+            value={[
+              <SlotTextContainer key={1}>
+                <GBText headline02>{"동대문역사문화공원역"}</GBText>
+                <GBText body02 color={"#9E9E9E"}>
+                  {"Dongdaemun Hisotry & Culture Park"}
+                </GBText>
+              </SlotTextContainer>,
+            ]}
+            dummyCharacters={dummyCharacters}
+          ></SlotCounter>
+        </SlotContainer>
+      </BodyContainer>
 
       <BoxContainer>
         <ButtonContainer>
@@ -26,7 +91,7 @@ function RandomTabContainer(): React.ReactElement {
             <Icons.SvgElement.shareBtnImage />
           </CopyToClipboard>
         </ButtonContainer>
-        <ButtonContainer>
+        <ButtonContainer onClick={onClick}>
           <Icons.SvgElement.restartBtnImage />
         </ButtonContainer>
       </BoxContainer>
@@ -46,16 +111,19 @@ const ImageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0 32px 0;
+  margin-top: 40px;
+  margin-bottom: 52px;
 `;
 
 const BodyContainer = styled.div`
-  height: 296px;
+  margin-top: 4px;
   display: flex;
+  height: 134px;
   flex-direction: column;
 `;
 
 const BoxContainer = styled.div`
+  margin-top: 92px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -66,6 +134,24 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
+`;
+
+const SlotContainer = styled.div`
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  bottom: 100px;
+`;
+const IconContainer = styled.div`
+  display: flex;
+`;
+
+const SlotTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default React.memo(RandomTabContainer);
