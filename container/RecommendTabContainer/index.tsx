@@ -15,8 +15,8 @@ function RandomTabContainer(): React.ReactElement {
   return (
     <Container>
       <ImageContainer>
-        <Icons.SvgElement.randomTitleImage />
-        <Icons.SvgElement.randomSubTitleImage />
+        <Icons.SvgElement.startImage />
+        <Icons.SvgElement.togetherAddImage />
       </ImageContainer>
 
       <BoxContainer>
@@ -39,14 +39,17 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
+  border: 1px solid red;
+  padding: 0 18px;
 `;
 const ImageContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
   margin-top: 40px;
-  margin-bottom: 52px;
+  margin-bottom: 24px;
 `;
 
 const BoxContainer = styled.div`
