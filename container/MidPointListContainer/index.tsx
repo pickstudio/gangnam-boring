@@ -59,6 +59,8 @@ export default function MidPointListContainer({
 }
 
 const CardContainer = styled.div`
+  display: flex;
+  flex-flow: column-reverse;
   padding-left: 20px;
 
   &:last-child {
@@ -68,7 +70,6 @@ const CardContainer = styled.div`
 
 const InfoCardContainer = styled.div`
   width: 100%;
-  max-height: 254px;
   display: flex;
   position: absolute;
   z-index: 2;

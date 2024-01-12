@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { TouchEventHandler, useRef } from "react";
 import styled from "styled-components";
 
 import TransportInfoBar from "../TransportInfoBar";
@@ -22,14 +22,56 @@ function MidPointInfoCard({
   onClickShare,
 }: IProps) {
   const ContainerRef = useRef<HTMLDivElement>(null);
+  const swipeRef = useRef<HTMLDivElement>(null);
   const canHandleContainer = transportInfoArray.length > 5;
 
-  const handleContainerHeight = () => {};
+  const maxHeightOfContainer = 32 * transportInfoArray.length + 100;
+  const minHeightOfContainer = 30 * 5 + 100;
+
+  const handleContainerHeight = (currentHeight: number) => {
+    ContainerRef.current?.style.setProperty("max-height", `${currentHeight}px`);
+  };
+
+  const handleTouchMoveEvent = (e: React.TouchEvent<HTMLDivElement>) => {
+    const currentHeight = window.innerHeight - e.changedTouches[0].clientY - 10;
+
+    handleContainerHeight(currentHeight);
+  };
+
+  const handleTouchEndEvent = (e: React.TouchEvent<HTMLDivElement>) => {
+    const currentHeight = window.innerHeight - e.changedTouches[0].clientY - 10;
+
+    if (currentHeight > maxHeightOfContainer / 2)
+      handleContainerHeight(maxHeightOfContainer);
+    else handleContainerHeight(minHeightOfContainer);
+  };
+
+  const handleDragEvent = (e: React.DragEvent<HTMLDivElement>) => {
+    if (e.clientY === 0) return;
+    const currentHeight = window.innerHeight - e.clientY - 10;
+
+    handleContainerHeight(currentHeight);
+  };
+
+  const handleDragEndEvent = (e: React.DragEvent<HTMLDivElement>) => {
+    const currentHeight = window.innerHeight - e.clientY - 10;
+
+    if (currentHeight > maxHeightOfContainer / 2)
+      handleContainerHeight(maxHeightOfContainer);
+    else handleContainerHeight(minHeightOfContainer);
+  };
 
   return (
     <Container ref={ContainerRef}>
       {canHandleContainer && (
-        <SwipeWrapper>
+        <SwipeWrapper
+          ref={swipeRef}
+          onDrag={handleDragEvent}
+          onDragEnd={handleDragEndEvent}
+          onTouchMove={handleTouchMoveEvent}
+          onTouchEnd={handleTouchEndEvent}
+          draggable="true"
+        >
           <SwipeUpBar />
         </SwipeWrapper>
       )}
@@ -53,7 +95,7 @@ function MidPointInfoCard({
               numberOfTransfer={item.numberOfTransfer}
               transportation={item.transportation}
             />
-            {index !== transportInfoArray.length ? <Divider /> : null}
+            {index + 1 !== transportInfoArray.length ? <Divider /> : null}
           </React.Fragment>
         );
       })}
@@ -63,9 +105,9 @@ function MidPointInfoCard({
 
 const Container = styled.div`
   width: 320px;
-  height: 254px;
+  max-height: 254px;
+  min-height: 154px;
   padding: 20px;
-
   background: #fff;
   border-radius: 18px;
   box-sizing: border-box;
