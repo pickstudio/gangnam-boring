@@ -7,6 +7,8 @@ import "./index.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icons } from "@/public/icon";
 
+import Api from "@/api/Api";
+
 function RandomTabContainer(): React.ReactElement {
   const [url, setUrl] = useState<string>("");
   const counterRef = useRef<SlotCounterRef>(null);
@@ -38,13 +40,18 @@ function RandomTabContainer(): React.ReactElement {
     </SlotTextContainer>,
   ];
 
+  const getRandomStation = async () => {
+    const { data } = await Api.shared.getRandomStation();
+    console.log(data);
+  };
+
   const onClick = () => {
-    console.log(counterRef);
     counterRef.current?.startAnimation();
   };
 
   useEffect(() => {
     setUrl(location.href);
+    getRandomStation();
   }, []);
 
   return (
