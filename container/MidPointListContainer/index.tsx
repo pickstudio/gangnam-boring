@@ -68,9 +68,11 @@ const CardContainer = styled.div`
 
 const InfoCardContainer = styled.div`
   width: 100%;
+  max-height: 254px;
   display: flex;
   position: absolute;
   z-index: 2;
   bottom: 20px;
   overflow: scroll;
+  overflow-y: clip;
 `;
