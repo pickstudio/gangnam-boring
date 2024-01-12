@@ -5,7 +5,7 @@ import TransportInfoBar from "../TransportInfoBar";
 
 import { Icons } from "@/public/icon";
 import { GBButton } from "@/components/base";
-import { TransportationType } from "@/interface/view/map";
+
 import { WayToStationType } from "@/interface/api/midPoint";
 
 interface IProps {
@@ -28,7 +28,11 @@ function MidPointInfoCard({
 
   return (
     <Container ref={ContainerRef}>
-      {canHandleContainer && <SwipeUpBar />}
+      {canHandleContainer && (
+        <SwipeWrapper>
+          <SwipeUpBar />
+        </SwipeWrapper>
+      )}
       <TitleContainer>
         <TitleText>{title}</TitleText>
         <ShareButtonContainer>
@@ -61,18 +65,29 @@ const Container = styled.div`
   width: 320px;
   height: 254px;
   padding: 20px;
+
   background: #fff;
   border-radius: 18px;
   box-sizing: border-box;
   position: relative;
 `;
 
-const SwipeUpBar = styled.div`
+const SwipeWrapper = styled.div`
+  display: flex;
   position: absolute;
-  top: 10px;
-  left: 45%;
+  width: 100%;
+  height: 20px;
+  top: 0px;
+  left: 0px;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+`;
+
+const SwipeUpBar = styled.div`
   width: 32px;
   height: 6px;
+  margin-top: 4px;
   border-radius: 3px;
   background-color: #dbdbdb;
 `;
