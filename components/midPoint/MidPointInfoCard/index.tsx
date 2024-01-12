@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import TransportInfoBar from "../TransportInfoBar";
@@ -21,8 +21,14 @@ function MidPointInfoCard({
   transportInfoArray,
   onClickShare,
 }: IProps) {
+  const ContainerRef = useRef<HTMLDivElement>(null);
+  const canHandleContainer = transportInfoArray.length > 5;
+
+  const handleContainerHeight = () => {};
+
   return (
-    <Container>
+    <Container ref={ContainerRef}>
+      {canHandleContainer && <SwipeUpBar />}
       <TitleContainer>
         <TitleText>{title}</TitleText>
         <ShareButtonContainer>
@@ -32,6 +38,7 @@ function MidPointInfoCard({
         </ShareButtonContainer>
       </TitleContainer>
       <SubTitleText>{`평균 ${timeCost}분`}</SubTitleText>
+
       {transportInfoArray.map((item, index) => {
         return (
           <React.Fragment key={`${item.timeCost} + ${index}`}>
@@ -51,12 +58,23 @@ function MidPointInfoCard({
 }
 
 const Container = styled.div`
-  width: 280px;
-  height: 154px;
+  width: 320px;
+  height: 254px;
   padding: 20px;
   background: #fff;
   border-radius: 18px;
-  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+`;
+
+const SwipeUpBar = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 45%;
+  width: 32px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #dbdbdb;
 `;
 
 const TitleContainer = styled.div`
