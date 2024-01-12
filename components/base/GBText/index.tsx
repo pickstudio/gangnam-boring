@@ -27,7 +27,7 @@ interface IProps {
 
 function GBText({
   children,
-  fontFamily = "NanumSquareNeo",
+  fontFamily = "GmarketSansMedium",
   display01,
   display02,
   headline01,
