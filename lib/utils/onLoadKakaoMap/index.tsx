@@ -12,6 +12,7 @@ interface ILatLng {
   longitude: number;
 }
 import MapMarker from "../../../public/icon/ic_upload.svg";
+import { MAP_COLOR_CONFIG } from "@/config";
 
 const handleMapOption = (centerLatLng: ILatLng) => {
   const container = document.getElementById("map");
@@ -43,7 +44,7 @@ const handleStartPoint = (LatLng: ILatLng, index: number) => {
 const handleCenterMarker = (centerLatLng: ILatLng) => {
   var imageSrc = "./images/img_map_marker.png";
   var imageSize = new window.kakao.maps.Size(22, 32);
-  var imageOption = { offset: new window.kakao.maps.Point(10, 25) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+  var imageOption = { offset: new window.kakao.maps.Point(10, 35) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
   const markerImage = new window.kakao.maps.MarkerImage(
     imageSrc,
@@ -62,12 +63,27 @@ const handleCenterMarker = (centerLatLng: ILatLng) => {
   });
 };
 
-interface IMarkerProps {
-  position: ILatLng;
-  markerImage: string;
+interface IWayLineProps {
+  startPoint: ILatLng;
+  endPoint: ILatLng;
+  index: number;
 }
 
-const handleMarker = (position: ILatLng) => {};
+const handleWayLine = ({ startPoint, endPoint, index }: IWayLineProps) => {
+  var linePath = [
+    new window.kakao.maps.LatLng(startPoint.latitude, startPoint.longitude),
+    new window.kakao.maps.LatLng(endPoint.latitude, endPoint.longitude),
+  ];
+
+  // 지도에 표시할 선을 생성합니다
+  return new window.kakao.maps.Polyline({
+    path: linePath, // 선을 구성하는 좌표배열 입니다
+    strokeWeight: 7, // 선의 두께 입니다
+    strokeColor: MAP_COLOR_CONFIG[index], // 선의 색깔입니다
+    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+    strokeStyle: "solid", // 선의 스타일입니다
+  });
+};
 
 export const onLoadKakaoMap = ({ centerLatLng, waysToStation }: IProps) => {
   window.kakao.maps.load(() => {
@@ -80,7 +96,14 @@ export const onLoadKakaoMap = ({ centerLatLng, waysToStation }: IProps) => {
 
     waysToStation.map((item, idx) => {
       var customOverlay = handleStartPoint(item.startPointLatLng, idx);
+      var polyline = handleWayLine({
+        startPoint: item.startPointLatLng,
+        endPoint: centerLatLng,
+        index: idx,
+      });
+
       customOverlay.setMap(map);
+      polyline.setMap(map);
     });
   });
 };
