@@ -15,7 +15,10 @@ mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLI
 
 function KakaoMapContainer({ wayInfo }: MidPointListProps) {
   const loadKakaoMap = () => {
-    onLoadKakaoMap({ centerLatLng: wayInfo.midPointLatLng });
+    onLoadKakaoMap({
+      centerLatLng: wayInfo.midPointLatLng,
+      waysToStation: wayInfo.waysToStation,
+    });
   };
 
   React.useEffect(() => {

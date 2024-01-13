@@ -1,8 +1,10 @@
-//
-import { Icons } from "@/public/icon";
+import { WayToStationType } from "@/interface/api/midPoint";
+
+import "./index.css";
 
 interface IProps {
   centerLatLng: ILatLng;
+  waysToStation: WayToStationType[];
 }
 
 interface ILatLng {
@@ -23,18 +25,20 @@ const handleMapOption = (centerLatLng: ILatLng) => {
   return new window.kakao.maps.Map(container, options);
 };
 
-// const handleCenterOverlay = (centerLatLng: ILatLng) => {
-//   var content = `<div class ="label"><img src="./images/img_map_marker.png" width='22' height='32'/></div>`;
-//   var position = new window.kakao.maps.LatLng(
-//     centerLatLng.latitude,
-//     centerLatLng.longitude
-//   );
+const handleStartPoint = (LatLng: ILatLng, index: number) => {
+  var content = `<div class="overlay class${index}">
+  <span>${index + 1}</span></div>`;
 
-//   return new window.kakao.maps.CustomOverlay({
-//     position: position,
-//     content: content,
-//   });
-// };
+  var position = new window.kakao.maps.LatLng(
+    LatLng.latitude,
+    LatLng.longitude
+  );
+
+  return new window.kakao.maps.CustomOverlay({
+    position: position,
+    content: content,
+  });
+};
 
 const handleCenterMarker = (centerLatLng: ILatLng) => {
   var imageSrc = "./images/img_map_marker.png";
@@ -65,7 +69,7 @@ interface IMarkerProps {
 
 const handleMarker = (position: ILatLng) => {};
 
-export const onLoadKakaoMap = ({ centerLatLng }: IProps) => {
+export const onLoadKakaoMap = ({ centerLatLng, waysToStation }: IProps) => {
   window.kakao.maps.load(() => {
     const map = handleMapOption(centerLatLng);
 
@@ -73,6 +77,10 @@ export const onLoadKakaoMap = ({ centerLatLng }: IProps) => {
     // var customOverlay = handleCenterOverlay(centerLatLng);
 
     marker.setMap(map);
-    // customOverlay.setMap(map);
+
+    waysToStation.map((item, idx) => {
+      var customOverlay = handleStartPoint(item.startPointLatLng, idx);
+      customOverlay.setMap(map);
+    });
   });
 };
