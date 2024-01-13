@@ -3,6 +3,7 @@ import styled, { useTheme } from "styled-components";
 
 import { GBText } from "@/components/base";
 import { Icons } from "@/public/icon";
+import { MAP_COLOR_CONFIG } from "@/config";
 
 interface IProps {
   index: number;
@@ -20,21 +21,8 @@ function TransportInfoBar({
   transportation,
 }: IProps) {
   const theme = useTheme();
-  const color = [
-    // index별 주요 색상 (0~9)
-    "#FFD600",
-    "#FF9100",
-    "#FF3D00",
-    "#F50057",
-    "#D500F9",
-    "#651FFF",
-    "#2979FF",
-    "#00B0FF",
-    "#00E5FF",
-    "#00E676",
-  ];
 
-  const currentColor = color[index % 10]; // 10개 아이템씩 색상 반복됨.
+  const currentColor = MAP_COLOR_CONFIG[index % 10]; // 10개 아이템씩 색상 반복됨.
   const subwayIconColor =
     transportation === "SUBWAY" ? currentColor : "#DBDBDB";
   const busIconColor = transportation === "BUS" ? currentColor : "#DBDBDB";
