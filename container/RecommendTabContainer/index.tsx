@@ -15,18 +15,19 @@ function RandomTabContainer(): React.ReactElement {
   return (
     <Container>
       <ImageContainer>
-        <Icons.SvgElement.randomTitleImage />
-        <Icons.SvgElement.randomSubTitleImage />
+        <Icons.SvgElement.startImage />
+        <Icons.SvgElement.togetherAddImage />
       </ImageContainer>
-
+      <DepartureBox>{<GBText body03>{"일이삼사"}</GBText>}</DepartureBox>
+      <DepartureBox>{<GBText body03>{"일이삼사"}</GBText>}</DepartureBox>
       <BoxContainer>
         <ButtonContainer>
           <CopyToClipboard text={url}>
-            <Icons.SvgElement.shareBtnImage />
+            <Icons.SvgElement.departureAddIcon />
           </CopyToClipboard>
         </ButtonContainer>
         <ButtonContainer>
-          <Icons.SvgElement.restartBtnImage />
+          <Icons.SvgElement.recommendBtnImage />
         </ButtonContainer>
       </BoxContainer>
     </Container>
@@ -36,30 +37,48 @@ function RandomTabContainer(): React.ReactElement {
 const Container = styled.div`
   display: flex;
   height: 100%;
+
+  min-height: 502px;
   flex-direction: column;
   align-items: center;
   background-color: white;
+
+  padding: 0 18px;
 `;
 const ImageContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
   margin-top: 40px;
-  margin-bottom: 52px;
+  margin-bottom: 24px;
 `;
 
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 140px;
+  margin-top: auto;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 32px;
+`;
+
+const DepartureBox = styled.div`
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1.5px solid black;
+  border-radius: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 48px;
 `;
 
 export default React.memo(RandomTabContainer);
