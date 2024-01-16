@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import { GBLayout, GBText } from "@/components/base";
 import { TERM_POLICY } from "@/config";
+import { Images } from "@/public/images";
 
 export default function Term() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,6 +15,10 @@ export default function Term() {
   const handleScrollView = () => {
     if (Number(containerRef.current?.scrollTop) > 0) setHasBorder(true);
     else setHasBorder(false);
+  };
+
+  const scrollToTop = () => {
+    containerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -42,6 +47,11 @@ export default function Term() {
               </TextContainer>
             );
           })}
+          {hasBorder && (
+            <GoToTopButton onClick={scrollToTop}>
+              <Images.topArrow />
+            </GoToTopButton>
+          )}
         </Container>
       </GBLayout>
     </React.Fragment>
@@ -69,4 +79,14 @@ const TextContainer = styled.div`
 
 const TitleContainer = styled.div`
   margin-bottom: 8px;
+`;
+
+const GoToTopButton = styled.button`
+  position: absolute;
+  right: 16px;
+  bottom: 30px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  align-items: center;
+  justify-content: center;
 `;
