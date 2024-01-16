@@ -29,7 +29,14 @@ function Header({
   const pathname = usePathname();
   const router = useRouter();
 
-  const basicPath = "/" + pathname.split("/")[1];
+  const basicPath = pathname
+    .split("/")
+    .map((item) => {
+      if (item === "") return;
+      return `/${item}`;
+    })
+    .join("");
+
   const title = HEADER_CONFIG[basicPath]?.name ?? "";
 
   const goBack = () => router.back();

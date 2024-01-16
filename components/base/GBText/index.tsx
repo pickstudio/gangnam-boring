@@ -18,6 +18,7 @@ interface IProps {
   body02?: boolean;
   body03?: boolean;
   body04?: boolean;
+  body07?: boolean;
   caption01?: boolean;
   caption02?: boolean;
   caption03?: boolean;
@@ -39,6 +40,7 @@ function GBText({
   body02,
   body03,
   body04,
+  body07,
   caption01,
   caption02,
   caption03,
@@ -141,6 +143,14 @@ function GBText({
         fontWeight: 400,
         ...defaultStyle,
       } as React.CSSProperties;
+    if (body07)
+      return {
+        fontFamily: fontFamily,
+        fontSize: "0.875rem",
+        lineHeight: "1rem",
+        fontWeight: 200,
+        ...defaultStyle,
+      } as React.CSSProperties;
     if (caption01)
       return {
         fontFamily: fontFamily,
@@ -193,6 +203,7 @@ function GBText({
     body02,
     body03,
     body04,
+    body07,
     caption01,
     caption02,
     caption03,

@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <Container>
       <TextContainer>
-        <TextButton href={"/midPoint"}>
+        <TextButton href={"/policy/term"}>
           <GBText caption02 color="#9E9E9E">
             {"이용약관"}
           </GBText>
@@ -15,7 +15,7 @@ export default function Footer() {
         <GBText caption01 color="#9E9E9E">
           {"|"}
         </GBText>
-        <TextButton href={"/midPoint"}>
+        <TextButton href={"/policy/privacy"}>
           <GBText caption01 color="#9E9E9E">
             {"개인정보처리방침"}
           </GBText>
