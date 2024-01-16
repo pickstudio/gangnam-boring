@@ -10,6 +10,7 @@ import DirectionButton from "../components/home/DirectionButton";
 import MenuTab from "@/components/home/MenuTab";
 import RandomTabContainer from "@/container/RandomTabContainer";
 import RecommendTabContainer from "@/container/RecommendTabContainer";
+import Footer from "@/components/base/Footer";
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState<number>(0);
@@ -90,6 +91,7 @@ export default function Home() {
           ) : (
             <RecommendTabContainer />
           )}
+          <Footer />
         </Container>
       </GBLayout>
     </React.Fragment>
