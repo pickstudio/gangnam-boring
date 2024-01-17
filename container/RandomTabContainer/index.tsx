@@ -41,8 +41,8 @@ function RandomTabContainer(): React.ReactElement {
   ];
 
   const getRandomStation = async () => {
-    const { data } = await Api.shared.getRandomStation();
-    console.log(data);
+    const data = await Api.shared.getRandomStation();
+    console.log("1", data);
   };
 
   const onClick = () => {

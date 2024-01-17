@@ -15,6 +15,7 @@ import Footer from "@/components/base/Footer";
 export default function Home() {
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
+  const [innerHeight, setInnerHeight] = useState<number>(0);
 
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -40,12 +41,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-    contentContainerRef.current?.addEventListener("scroll", handleScrollView);
-    return () =>
-      contentContainerRef.current?.removeEventListener(
-        "scroll",
-        handleScrollView
-      );
+    if (typeof window !== "undefined") {
+      setInnerHeight(window.innerHeight);
+      contentContainerRef.current?.addEventListener("scroll", handleScrollView);
+      return () =>
+        contentContainerRef.current?.removeEventListener(
+          "scroll",
+          handleScrollView
+        );
+    }
   }, []);
 
   const shareLink = () => {};
@@ -72,7 +76,7 @@ export default function Home() {
             <TitleBox>
               <Icons.SvgElement.subTitleImage />
             </TitleBox>
-            <ImageContainer>
+            <ImageContainer $convertHeight={innerHeight}>
               <Icons.SvgElement.nomoreImage />
             </ImageContainer>
           </TextContainer>
@@ -127,12 +131,6 @@ const moveLeft = keyframes`
   }
 `;
 
-const IconContainer = styled.div<{ direction?: number }>`
-  position: absolute;
-  animation: ${({ direction }) => (direction === 1 ? moveLeft : moveRight)} 10s
-    1s infinite linear alternate;
-`;
-
 const TitleBox = styled.div``;
 
 const TextContainer = styled.div`
@@ -148,11 +146,12 @@ const ButtonContainer = styled.div`
   margin-bottom: 8px;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ $convertHeight: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 16px;
+  margin-top: ${(props) => props.$convertHeight / 48.5}px;
+
   margin-bottom: 46px;
   box-sizing: border-box;
 `;
