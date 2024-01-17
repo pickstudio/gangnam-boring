@@ -23,7 +23,7 @@ function MenuTab({ list, onClick, currentTab, setCurrentTab }: IProps) {
           id={item.id}
           key={item.id}
           onClick={(e) => onClickHandler(e, i)}
-          isCurrent={i == currentTab && true}
+          $isCurrent={i == currentTab && true}
         >
           {item.label}
         </Tab>
@@ -62,9 +62,9 @@ const defaultTabStyle = css`
   background-color: #fff0da;
 `;
 
-const Tab = styled.div<{ isCurrent?: boolean }>`
+const Tab = styled.div<{ $isCurrent?: boolean }>`
   ${commonTabStyle}
-  ${(props) => (props.isCurrent ? currentTabStyle : defaultTabStyle)}
+  ${(props) => (props.$isCurrent ? currentTabStyle : defaultTabStyle)}
   cursor :pointer;
 `;
 
