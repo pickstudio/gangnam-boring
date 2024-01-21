@@ -19,7 +19,5 @@ export const getAddr = async (keyword: string) => {
     }
   );
 
-  console.log(response, response.data.results.juso);
-
   return response.data.results.juso;
 };
