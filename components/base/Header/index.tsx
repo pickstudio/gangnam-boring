@@ -1,34 +1,63 @@
-'use client';
+"use client";
 
-import React from 'react';
-import styled from 'styled-components';
-import { usePathname, useRouter } from 'next/navigation';
-import { Icons } from '@/public/icon';
-import { HEADER_CONFIG } from '@/config';
-import { GBText } from '@/components/base';
+import React from "react";
+import styled from "styled-components";
+import { usePathname, useRouter } from "next/navigation";
+import { Icons } from "@/public/icon";
+import { HEADER_CONFIG } from "@/config";
+import { GBText } from "@/components/base";
 
 export interface IProps {
+  logo?: boolean;
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
+  showTitle?: boolean;
+  onClickLeftIcon?: () => void;
+  onClickRightIcon?: () => void;
 }
 
-function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
+function Header({
+  logo = false,
+  showTitle = true,
+  headerLeftIcon,
+  headerRightIcon,
+  headerMyPageIcon,
+  onClickLeftIcon,
+  onClickRightIcon,
+}: IProps) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const basicPath = '/' + pathname.split('/')[1];
-  const title = HEADER_CONFIG[basicPath]?.name ?? '';
+  const basicPath = pathname
+    .split("/")
+    .map((item) => {
+      if (item === "") return;
+      return `/${item}`;
+    })
+    .join("");
+
+  const title = HEADER_CONFIG[basicPath]?.name ?? "";
+
+  const goBack = () => router.back();
 
   return (
     <Container>
-      <ContentContainer>
-        <IconContainer onClick={() => router.back()}>
-          {/* {headerLeftIcon && <Icons.SvgElement.closeIcon />} */}
-        </IconContainer>
-        {/* <GBText body01>{title}</GBText> */}
-        <IconContainer>{headerRightIcon && <Icons.SvgElement.uploadIcon />}</IconContainer>
-      </ContentContainer>
+      {logo ? (
+        <LogoImage />
+      ) : (
+        <ContentContainer>
+          <IconContainer onClick={onClickLeftIcon ?? goBack}>
+            {headerLeftIcon && <Icons.SvgElement.leftArrowIcon />}
+          </IconContainer>
+          <TitleContainer>
+            {showTitle && <GBText body01>{title}</GBText>}
+          </TitleContainer>
+          <IconContainer onClick={onClickRightIcon}>
+            {headerRightIcon && <Icons.SvgElement.uploadIcon />}
+          </IconContainer>
+        </ContentContainer>
+      )}
     </Container>
   );
 }
@@ -36,11 +65,8 @@ function Header({ headerLeftIcon, headerRightIcon, headerMyPageIcon }: IProps) {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #fff0da;
   max-width: 768px;
+  background-color: rgba(255, 255, 255, 0);
   width: 100%;
 `;
 
@@ -57,9 +83,22 @@ const ContentContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 24px;
   height: 24px;
   cursor: pointer;
+`;
+
+const TitleContainer = styled.div`
+  padding-top: 2px;
+`;
+
+const LogoImage = styled(Icons.SvgElement.horizontalLogo)`
+  height: 34px;
+  margin: 20px 20px 0 32px;
 `;
 
 export default React.memo(Header);

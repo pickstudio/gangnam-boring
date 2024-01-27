@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useCallback, useState } from "react";
+import styled, { css } from "styled-components";
 
 interface IProps {
   list: { label: string; id: string }[];
@@ -19,7 +19,12 @@ function MenuTab({ list, onClick, currentTab, setCurrentTab }: IProps) {
   return (
     <Container>
       {list.map((item, i) => (
-        <Tab id={item.id} key={item.id} onClick={(e) => onClickHandler(e, i)} isCurrent={i === currentTab && true}>
+        <Tab
+          id={item.id}
+          key={item.id}
+          onClick={(e) => onClickHandler(e, i)}
+          $isCurrent={i == currentTab && true}
+        >
           {item.label}
         </Tab>
       ))}
@@ -32,7 +37,6 @@ const Container = styled.div`
   flex-direction: row;
   height: 56px;
   background-color: #fff0da;
-
   justify-content: center;
 `;
 
@@ -43,6 +47,7 @@ const commonTabStyle = css`
   font-family: "GmarketSansMedium";
   align-items: center;
   justify-content: center;
+  padding: 18px 0;
 `;
 
 const currentTabStyle = css`
@@ -57,9 +62,9 @@ const defaultTabStyle = css`
   background-color: #fff0da;
 `;
 
-const Tab = styled.div<{ isCurrent?: boolean }>`
+const Tab = styled.div<{ $isCurrent?: boolean }>`
   ${commonTabStyle}
-  ${(props) => (props.isCurrent ? currentTabStyle : defaultTabStyle)}
+  ${(props) => (props.$isCurrent ? currentTabStyle : defaultTabStyle)}
   cursor :pointer;
 `;
 

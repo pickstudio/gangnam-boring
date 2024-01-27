@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import styled, { keyframes } from "styled-components";
@@ -9,10 +10,14 @@ import DirectionButton from "../components/home/DirectionButton";
 import MenuTab from "@/components/home/MenuTab";
 import RandomTabContainer from "@/container/RandomTabContainer";
 import RecommendTabContainer from "@/container/RecommendTabContainer";
+import Footer from "@/components/base/Footer";
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState<number>(0);
-  const option1Ref = useRef<HTMLDivElement | null>(null);
+  const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
+  const [innerHeight, setInnerHeight] = useState<number>(0);
+
+  const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const tabList = [
     {
@@ -29,18 +34,49 @@ export default function Home() {
     console.log("e");
   };
 
+  const handleScrollView = () => {
+    if (Number(contentContainerRef.current?.scrollTop) > 200)
+      setShouldShowLogo(true);
+    else setShouldShowLogo(false);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setInnerHeight(window.innerHeight);
+      contentContainerRef.current?.addEventListener("scroll", handleScrollView);
+      return () =>
+        contentContainerRef.current?.removeEventListener(
+          "scroll",
+          handleScrollView
+        );
+    }
+  }, []);
+
+  const shareLink = () => {};
+
+  const onClickHeaderRightIcon = () => {
+    shareLink();
+  };
+
   return (
     <React.Fragment>
       <Head>
         <title>{"강남은 지루해"}</title>
       </Head>
-      <GBLayout header headerRightIcon>
-        <Container ref={option1Ref}>
+      <GBLayout
+        header
+        logo={shouldShowLogo}
+        showTitle={false}
+        headerRightIcon
+        onClickRightIcon={onClickHeaderRightIcon}
+        color="#fff0da"
+      >
+        <Container ref={contentContainerRef}>
           <TextContainer>
             <TitleBox>
               <Icons.SvgElement.subTitleImage />
             </TitleBox>
-            <ImageContainer>
+            <ImageContainer $convertHeight={innerHeight}>
               <Icons.SvgElement.nomoreImage />
             </ImageContainer>
           </TextContainer>
@@ -54,8 +90,13 @@ export default function Home() {
             list={tabList}
             onClick={handleClickTab}
           />
+          {currentTab === 0 ? (
+            <RandomTabContainer />
+          ) : (
+            <RecommendTabContainer />
+          )}
+          <Footer />
         </Container>
-        {currentTab === 0 ? <RandomTabContainer /> : <RecommendTabContainer />}
       </GBLayout>
     </React.Fragment>
   );
@@ -64,6 +105,7 @@ export default function Home() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: scroll;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -89,12 +131,6 @@ const moveLeft = keyframes`
   }
 `;
 
-const IconContainer = styled.div<{ direction?: number }>`
-  position: absolute;
-  animation: ${({ direction }) => (direction === 1 ? moveLeft : moveRight)} 10s
-    1s infinite linear alternate;
-`;
-
 const TitleBox = styled.div``;
 
 const TextContainer = styled.div`
@@ -110,11 +146,12 @@ const ButtonContainer = styled.div`
   margin-bottom: 8px;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ $convertHeight: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 16px;
+  margin-top: ${(props) => props.$convertHeight / 48.5}px;
+
   margin-bottom: 46px;
   box-sizing: border-box;
 `;

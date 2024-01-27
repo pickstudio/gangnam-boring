@@ -1,22 +1,18 @@
-import React from "react";
+import React, { TouchEventHandler, useRef } from "react";
 import styled from "styled-components";
 
-import { Icons } from "@/public/icon";
 import TransportInfoBar from "../TransportInfoBar";
+
+import { Icons } from "@/public/icon";
 import { GBButton } from "@/components/base";
+
+import { WayToStationType } from "@/interface/api/midPoint";
 
 interface IProps {
   title: string;
   timeCost: number;
-  transportInfoArray: ITransportInfo[];
+  transportInfoArray: WayToStationType[];
   onClickShare: () => void;
-}
-
-interface ITransportInfo {
-  totalTimeCost: number;
-  numberOfTransfer?: number;
-  timeCostOfPublicTransfer?: number;
-  timeCostOfCar?: number;
 }
 
 function MidPointInfoCard({
@@ -25,8 +21,60 @@ function MidPointInfoCard({
   transportInfoArray,
   onClickShare,
 }: IProps) {
+  const ContainerRef = useRef<HTMLDivElement>(null);
+  const swipeRef = useRef<HTMLDivElement>(null);
+  const canHandleContainer = transportInfoArray.length > 5;
+
+  const maxHeightOfContainer = 32 * transportInfoArray.length + 100;
+  const minHeightOfContainer = 30 * 5 + 100;
+
+  const handleContainerHeight = (currentHeight: number) => {
+    ContainerRef.current?.style.setProperty("max-height", `${currentHeight}px`);
+  };
+
+  const handleTouchMoveEvent = (e: React.TouchEvent<HTMLDivElement>) => {
+    const currentHeight = window.innerHeight - e.changedTouches[0].clientY - 10;
+
+    handleContainerHeight(currentHeight);
+  };
+
+  const handleTouchEndEvent = (e: React.TouchEvent<HTMLDivElement>) => {
+    const currentHeight = window.innerHeight - e.changedTouches[0].clientY - 10;
+
+    if (currentHeight > maxHeightOfContainer / 2)
+      handleContainerHeight(maxHeightOfContainer);
+    else handleContainerHeight(minHeightOfContainer);
+  };
+
+  const handleDragEvent = (e: React.DragEvent<HTMLDivElement>) => {
+    if (e.clientY === 0) return;
+    const currentHeight = window.innerHeight - e.clientY - 10;
+
+    handleContainerHeight(currentHeight);
+  };
+
+  const handleDragEndEvent = (e: React.DragEvent<HTMLDivElement>) => {
+    const currentHeight = window.innerHeight - e.clientY - 10;
+
+    if (currentHeight > maxHeightOfContainer / 2)
+      handleContainerHeight(maxHeightOfContainer);
+    else handleContainerHeight(minHeightOfContainer);
+  };
+
   return (
-    <Container>
+    <Container ref={ContainerRef}>
+      {canHandleContainer && (
+        <SwipeWrapper
+          ref={swipeRef}
+          onDrag={handleDragEvent}
+          onDragEnd={handleDragEndEvent}
+          onTouchMove={handleTouchMoveEvent}
+          onTouchEnd={handleTouchEndEvent}
+          draggable="true"
+        >
+          <SwipeUpBar />
+        </SwipeWrapper>
+      )}
       <TitleContainer>
         <TitleText>{title}</TitleText>
         <ShareButtonContainer>
@@ -35,20 +83,20 @@ function MidPointInfoCard({
           </GBButton>
         </ShareButtonContainer>
       </TitleContainer>
-      <SubTitleText>{`평균 이동 시간 ${timeCost}분`}</SubTitleText>
+      <SubTitleText>{`평균 ${timeCost}분`}</SubTitleText>
+
       {transportInfoArray.map((item, index) => {
         return (
-          <>
+          <React.Fragment key={`${item.timeCost} + ${index}`}>
             <TransportInfoBar
-              key={`${item.totalTimeCost} + ${index}`}
+              index={index}
               orderOfRoute={index + 1}
-              totalTimeCost={item.totalTimeCost}
+              totalTimeCost={item.timeCost}
               numberOfTransfer={item.numberOfTransfer}
-              timeCostOfPublicTransfer={item.timeCostOfPublicTransfer}
-              timeCostOfCar={item.timeCostOfCar}
+              transportation={item.transportation}
             />
-            {index !== transportInfoArray.length ? <Divider /> : null}
-          </>
+            {index + 1 !== transportInfoArray.length ? <Divider /> : null}
+          </React.Fragment>
         );
       })}
     </Container>
@@ -56,12 +104,34 @@ function MidPointInfoCard({
 }
 
 const Container = styled.div`
-  width: 280px;
-  height: 154px;
+  width: 320px;
+  max-height: 254px;
+  min-height: 154px;
   padding: 20px;
   background: #fff;
   border-radius: 18px;
-  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+`;
+
+const SwipeWrapper = styled.div`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: 0px;
+  left: 0px;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+`;
+
+const SwipeUpBar = styled.div`
+  width: 32px;
+  height: 6px;
+  margin-top: 4px;
+  border-radius: 3px;
+  background-color: #dbdbdb;
 `;
 
 const TitleContainer = styled.div`

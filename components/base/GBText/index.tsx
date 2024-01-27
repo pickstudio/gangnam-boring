@@ -1,8 +1,12 @@
-import React from 'react';
+import React from "react";
 
 interface IProps {
   children: string | string[] | React.ReactNode;
-  fontFamily?: 'EF_jejudoldam' | 'NanumSquareNeo' | 'UhBeeSe_hyun' | 'GmarketSansMedium';
+  fontFamily?:
+    | "EF_jejudoldam"
+    | "NanumSquareNeo"
+    | "UhBeeSe_hyun"
+    | "GmarketSansMedium";
   display01?: boolean;
   display02?: boolean;
   headline01?: boolean;
@@ -14,6 +18,7 @@ interface IProps {
   body02?: boolean;
   body03?: boolean;
   body04?: boolean;
+  body07?: boolean;
   caption01?: boolean;
   caption02?: boolean;
   caption03?: boolean;
@@ -23,7 +28,7 @@ interface IProps {
 
 function GBText({
   children,
-  fontFamily = 'NanumSquareNeo',
+  fontFamily = "GmarketSansMedium",
   display01,
   display02,
   headline01,
@@ -35,145 +40,155 @@ function GBText({
   body02,
   body03,
   body04,
+  body07,
   caption01,
   caption02,
   caption03,
   caption04,
-  color
+  color,
 }: IProps) {
   const style: React.CSSProperties = React.useMemo(() => {
     const defaultStyle = {
       padding: 0,
       margin: 0,
       color: color,
-      whiteSpace: 'pre-wrap'
+      whiteSpace: "pre-wrap",
     } as React.CSSProperties;
+
     if (display01)
       return {
         fontFamily: fontFamily,
-        fontSize: '2.25rem',
-        lineHeight: '2.625rem',
+        fontSize: "2.25rem",
+        lineHeight: "2.625rem",
         fontWeight: 600,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (display02)
       return {
         fontFamily: fontFamily,
-        fontSize: '2rem',
-        lineHeight: '2.5rem',
+        fontSize: "2rem",
+        lineHeight: "2.5rem",
         fontWeight: 600,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (headline01)
       return {
         fontFamily: fontFamily,
-        fontSize: '1.5rem',
-        lineHeight: '2.25rem',
+        fontSize: "1.5rem",
+        lineHeight: "2.25rem",
         fontWeight: 600,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (headline02)
       return {
         fontFamily: fontFamily,
-        fontSize: '1.5rem',
-        lineHeight: '2.25rem',
+        fontSize: "1.5rem",
+        lineHeight: "2.25rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (title01)
       return {
         fontFamily: fontFamily,
-        fontSize: '1.25rem',
-        lineHeight: '2rem',
+        fontSize: "1.25rem",
+        lineHeight: "2rem",
         fontWeight: 600,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (title02)
       return {
         fontFamily: fontFamily,
-        fontSize: '1.25rem',
-        lineHeight: '2rem',
+        fontSize: "1.25rem",
+        lineHeight: "2rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (subHeadline01)
       return {
         fontFamily: fontFamily,
-        fontSize: '1rem',
-        lineHeight: '1.5rem',
+        fontSize: "1rem",
+        lineHeight: "1.5rem",
         fontWeight: 600,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (body01)
       return {
         fontFamily: fontFamily,
-        fontSize: '1rem',
-        lineHeight: '1.5rem',
+        fontSize: "1rem",
+        lineHeight: "1.5rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (body02)
       return {
         fontFamily: fontFamily,
-        fontSize: '1rem',
-        lineHeight: '1.5rem',
+        fontSize: "1rem",
+        lineHeight: "1.5rem",
         fontWeight: 400,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (body03)
       return {
         fontFamily: fontFamily,
-        fontSize: '0.875rem',
-        lineHeight: '1.25rem',
+        fontSize: "0.875rem",
+        lineHeight: "1.25rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (body04)
       return {
         fontFamily: fontFamily,
-        fontSize: '0.875rem',
-        lineHeight: '1.25rem',
+        fontSize: "0.875rem",
+        lineHeight: "1.25rem",
         fontWeight: 400,
-        ...defaultStyle
+        ...defaultStyle,
+      } as React.CSSProperties;
+    if (body07)
+      return {
+        fontFamily: fontFamily,
+        fontSize: "0.875rem",
+        lineHeight: "1rem",
+        fontWeight: 200,
+        ...defaultStyle,
       } as React.CSSProperties;
     if (caption01)
       return {
         fontFamily: fontFamily,
-        fontSize: '0.75rem',
-        lineHeight: '1.25rem',
+        fontSize: "0.75rem",
+        lineHeight: "1.25rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (caption02)
       return {
         fontFamily: fontFamily,
-        fontSize: '0.75rem',
-        lineHeight: '1.25rem',
+        fontSize: "0.75rem",
+        lineHeight: "1.25rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (caption03)
       return {
         fontFamily: fontFamily,
-        fontSize: '0.625rem',
-        lineHeight: '1rem',
+        fontSize: "0.625rem",
+        lineHeight: "1rem",
         fontWeight: 500,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     if (caption04)
       return {
         fontFamily: fontFamily,
-        fontSize: '0.625rem',
-        lineHeight: '1rem',
+        fontSize: "0.625rem",
+        lineHeight: "1rem",
         fontWeight: 400,
-        ...defaultStyle
+        ...defaultStyle,
       } as React.CSSProperties;
     return {
       fontFamily: fontFamily,
-      fontSize: '1rem',
-      lineHeight: '1.5rem',
+      fontSize: "1rem",
+      lineHeight: "1.5rem",
       fontWeight: 500,
-      ...defaultStyle
+      ...defaultStyle,
     } as React.CSSProperties;
   }, [
     fontFamily,
@@ -188,12 +203,14 @@ function GBText({
     body02,
     body03,
     body04,
+    body07,
     caption01,
     caption02,
     caption03,
     caption04,
-    color
+    color,
   ]);
+
   return <span style={style}>{children}</span>;
 }
 

@@ -1,0 +1,51 @@
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  box-shadow: 0px 0px 6px 0px #00000033;
+  border: 1px solid white;
+  border-radius: 11px;
+}
+
+.overlay > span {
+  padding: 0;
+  margin-top: 1px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 700;
+  font-family: "GmarketSansMedium";
+}
+
+.class0 {
+  background-color: #ffd600;
+}
+.class1 {
+  background-color: #ff9100;
+}
+.class2 {
+  background-color: #ff3d00;
+}
+.class3 {
+  background-color: #f50057;
+}
+.class4 {
+  background-color: #d500f9;
+}
+.class5 {
+  background-color: #651fff;
+}
+.class6 {
+  background-color: #2979ff;
+}
+.class7 {
+  background-color: #00b0ff;
+}
+.class8 {
+  background-color: #00e5ff;
+}
+.class9 {
+  background-color: #00e676;
+}

@@ -1,5 +1,6 @@
 //Header
 import UploadIcon from "./ic_upload.svg";
+import HorizontalLogo from "./ic_logoHorizontal.svg";
 
 // Main
 import MainTitleImage from "./img_mainTitle.svg";
@@ -12,12 +13,15 @@ import RandomSubTitleImage from "./img_randomSubTitle.svg";
 import RandomTitleImage from "./img_randomTitle.svg";
 import RestartBtnImage from "./img_restartBtn.svg";
 import ShareBtnImage from "./img_shareBtn.svg";
+import StationImage from "./img_station.svg";
+import OkayImage from "./img_okay.svg";
 
 // Recommend
 import DepartureImage from "./img_departure.svg";
 import TogetherAddImage from "./img_togetherAdd.svg";
 import DepartureAddIcon from "./ic_departureAdd.svg";
 import RecommendBtnImage from "./img_recommendBtn.svg";
+import StartImage from "./img_start.svg";
 
 // Tab
 import YellowArrowIcon from "./ic_yellowArrow.svg";
@@ -41,6 +45,8 @@ import RefreshIcon from "./ic_refresh.svg";
 import SubwayIcon from "./ic_subway.svg";
 import TagIcon from "./ic_tag.svg";
 import leftArrowIcon from "./ic_leftArrow.svg";
+import LocationIcon from "./ic_location.svg";
+import CurrentLocationIcon from "./ic_currentLocation.svg";
 
 export const Icons = {
   SvgElement: {
@@ -49,18 +55,22 @@ export const Icons = {
     subTitleImage: SubTitleImage,
     logoImage: LogoImage,
     nomoreImage: NomoreImage,
+    horizontalLogo: HorizontalLogo,
 
     // Random
     randomSubTitleImage: RandomSubTitleImage,
     randomTitleImage: RandomTitleImage,
     restartBtnImage: RestartBtnImage,
     shareBtnImage: ShareBtnImage,
+    stationImage: StationImage,
+    okayImage: OkayImage,
 
     // Recommend
     departureImage: DepartureImage,
     togetherAddImage: TogetherAddImage,
     departureAddIcon: DepartureAddIcon,
     recommendBtnImage: RecommendBtnImage,
+    startImage: StartImage,
 
     // Header
     uploadIcon: UploadIcon,
@@ -87,5 +97,7 @@ export const Icons = {
     refreshIcon: RefreshIcon,
     subwayIcon: SubwayIcon,
     tagIcon: TagIcon,
+    locationIcon: LocationIcon,
+    currentLocationIcon: CurrentLocationIcon,
   },
 };

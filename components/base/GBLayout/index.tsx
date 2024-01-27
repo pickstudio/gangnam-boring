@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styled from "styled-components";
 
@@ -6,19 +8,29 @@ import Header from "@/components/base/Header";
 interface IProps {
   children: React.ReactNode;
   header?: boolean;
+  logo?: boolean;
+  color?: string;
   bottomNavigation?: boolean;
   headerLeftIcon?: boolean;
   headerRightIcon?: boolean;
   headerMyPageIcon?: boolean;
+  showTitle?: boolean;
+  onClickLeftIcon?: () => void;
+  onClickRightIcon?: () => void;
 }
 
 function GBLayout({
   children,
   header,
+  logo,
   bottomNavigation,
   headerLeftIcon,
   headerRightIcon,
   headerMyPageIcon,
+  color,
+  showTitle = true,
+  onClickLeftIcon,
+  onClickRightIcon,
 }: IProps): React.ReactElement {
   React.useEffect(() => {
     function resizeHeightForIOS() {
@@ -36,14 +48,20 @@ function GBLayout({
 
   return (
     <Container>
-      {header && (
-        <Header
-          headerLeftIcon={headerLeftIcon}
-          headerRightIcon={headerRightIcon}
-          headerMyPageIcon={headerMyPageIcon}
-        />
-      )}
-      <ContentContainer>{children}</ContentContainer>
+      <ContentContainer color={color ?? "#fff"}>
+        {header && (
+          <Header
+            headerLeftIcon={headerLeftIcon}
+            headerRightIcon={headerRightIcon}
+            headerMyPageIcon={headerMyPageIcon}
+            logo={logo}
+            showTitle={showTitle}
+            onClickLeftIcon={onClickLeftIcon}
+            onClickRightIcon={onClickRightIcon}
+          />
+        )}
+        {children}
+      </ContentContainer>
     </Container>
   );
 }
@@ -62,7 +80,7 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ color: string }>`
   display: flex;
   flex-direction: column;
   overflow: overlay;
@@ -70,6 +88,7 @@ const ContentContainer = styled.div`
   max-width: 768px;
   width: 100%;
   height: 100%;
+  background-color: ${(props) => props.color};
   ::-webkit-scrollbar {
     display: none;
   }

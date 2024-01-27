@@ -5,50 +5,30 @@ import styled from "styled-components";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icons } from "@/public/icon";
 
-interface DepartureIProps {
-  id: number;
-  departure: string;
-}
+function RandomTabContainer(): React.ReactElement {
+  const [url, setUrl] = useState<string>("");
 
-function RecommendTabContainer(): React.ReactElement {
-  const defaultArray = [
-    {
-      id: 0,
-      departure: "",
-    },
-  ];
-  const [departureList, setDepartureList] =
-    useState<DepartureIProps[]>(defaultArray);
+  useEffect(() => {
+    setUrl(location.href);
+  }, []);
 
   return (
     <Container>
       <ImageContainer>
-        <Icons.SvgElement.departureImage />
+        <Icons.SvgElement.startImage />
         <Icons.SvgElement.togetherAddImage />
       </ImageContainer>
-      <BodyContainer>
-        {departureList.map((item, index) => (
-          <TextBox key={index}>
-            {item.departure !== "" ? (
-              <GBText fontFamily="GmarketSansMedium" body03 color="#000000">
-                {item.departure}
-              </GBText>
-            ) : (
-              <GBText fontFamily="GmarketSansMedium" body03 color="#9E9E9E">
-                {"어디서 출발함?"}
-              </GBText>
-            )}
-          </TextBox>
-        ))}
-      </BodyContainer>
-
+      <DepartureBox>{<GBText body03>{"일이삼사"}</GBText>}</DepartureBox>
+      <DepartureBox>{<GBText body03>{"일이삼사"}</GBText>}</DepartureBox>
       <BoxContainer>
-        <GBButton>
-          <Icons.SvgElement.departureAddIcon />
-        </GBButton>
-        <GBButton>
+        <ButtonContainer>
+          <CopyToClipboard text={url}>
+            <Icons.SvgElement.departureAddIcon />
+          </CopyToClipboard>
+        </ButtonContainer>
+        <ButtonContainer>
           <Icons.SvgElement.recommendBtnImage />
-        </GBButton>
+        </ButtonContainer>
       </BoxContainer>
     </Container>
   );
@@ -56,42 +36,49 @@ function RecommendTabContainer(): React.ReactElement {
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
   height: 100%;
+
+  min-height: 502px;
   flex-direction: column;
   align-items: center;
   background-color: white;
+
+  padding: 0 18px;
 `;
 const ImageContainer = styled.div`
   display: flex;
-  width: 338px;
   flex-direction: row;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 0 24px 0;
-`;
-const BodyContainer = styled.div`
-  height: 296px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const TextBox = styled.div`
-  display: flex;
-  align-items: center;
-  width: 338px;
-  height: 48px;
-  border: 1.5px solid #dbdbdb;
-  padding: 0 20px;
-  border-radius: 32px;
-  box-sizing: border-box;
+  margin-top: 40px;
+  margin-bottom: 24px;
 `;
 
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 100%;
+  margin-top: auto;
 `;
 
-export default React.memo(RecommendTabContainer);
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+`;
+
+const DepartureBox = styled.div`
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1.5px solid black;
+  border-radius: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 48px;
+`;
+
+export default React.memo(RandomTabContainer);
