@@ -94,9 +94,7 @@ function RandomTabContainer(): React.ReactElement {
 
       <BoxContainer>
         <ButtonContainer>
-          <CopyToClipboard text={url}>
-            <Icons.SvgElement.shareBtnImage />
-          </CopyToClipboard>
+          {/* <CopyToClipboard text={url}></CopyToClipboard> */}
         </ButtonContainer>
         <ButtonContainer onClick={onClick}>
           <Icons.SvgElement.restartBtnImage />

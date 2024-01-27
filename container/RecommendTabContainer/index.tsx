@@ -22,9 +22,7 @@ function RandomTabContainer(): React.ReactElement {
       <DepartureBox>{<GBText body03>{"일이삼사"}</GBText>}</DepartureBox>
       <BoxContainer>
         <ButtonContainer>
-          <CopyToClipboard text={url}>
-            <Icons.SvgElement.departureAddIcon />
-          </CopyToClipboard>
+          {/* <CopyToClipboard text={url}></CopyToClipboard> */}
         </ButtonContainer>
         <ButtonContainer>
           <Icons.SvgElement.recommendBtnImage />

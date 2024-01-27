@@ -1,7 +1,7 @@
 import getConfig from "next/config";
 
 import { GBApi } from "./GBApi";
-import ApiService from "./apiService";
+import ApiService from "./ApiService";
 
 export default class Api {
   private static instance: GBApi;

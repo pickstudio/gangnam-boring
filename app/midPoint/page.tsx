@@ -17,7 +17,9 @@ export default function MidPoint() {
     <React.Fragment>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
+          {/* @ts-expect-error Server Component */}
           <MidPointListContainer transportInfoArray={transportInfoArray} />
+          {/* @ts-expect-error Server Component */}
           <KakaoMapContainer wayInfo={transportInfoArray[0]} />
         </ContentContainer>
       </GBLayout>

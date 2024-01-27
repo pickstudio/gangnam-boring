@@ -136,6 +136,7 @@ const loadPostcode = (function () {
     if (promise) return promise;
 
     promise = new Promise((resolve, reject) => {
+      if (typeof window === "undefined") return;
       const script = document.createElement("script");
       script.src = url;
       script.onload = () => {
@@ -148,7 +149,7 @@ const loadPostcode = (function () {
           )
         );
       };
-      
+
       script.onerror = (error) => reject(error);
       script.id = scriptId;
 

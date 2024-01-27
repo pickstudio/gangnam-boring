@@ -11,13 +11,14 @@ interface MidPointListProps {
   transportInfoArray: MidPointAPIResponseType[];
 }
 
-const innerWidth = window.innerWidth - 40;
-
 export default function MidPointListContainer({
   transportInfoArray,
 }: MidPointListProps) {
   const HorizontalScrollDivRef = useRef<HTMLDivElement>(null);
 
+  if (typeof window === "undefined") return;
+
+  const innerWidth = window.innerWidth - 40;
   const trackScrollPosition = () => {
     const currentScrollPosition = Number(
       HorizontalScrollDivRef.current?.scrollLeft
