@@ -1,48 +1,85 @@
+"use client";
+
 import { GBButton, GBText } from "@/components/base";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icons } from "@/public/icon";
+import { useRouter } from "next/navigation";
 
-function RandomTabContainer(): React.ReactElement {
+interface RecommendTabContainerProps {
+  departureBoxes: string[];
+  handleAddBox: () => void;
+  handleDeleteBox: (index: number) => void;
+}
+
+function RecommendTabContainer({
+  departureBoxes,
+  handleAddBox,
+  handleDeleteBox,
+}: RecommendTabContainerProps): React.ReactElement {
   const [url, setUrl] = useState<string>("");
-  const [departureBoxes, setDepartureBoxes] = useState<string[]>([""]);
+  const [isRecommendBtnDisabled, setRecommendBtnDisabled] =
+    useState<boolean>(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setUrl(location.href);
   }, []);
 
-  const handleAddDepartureBox = () => {
-    setDepartureBoxes((prevDepartureBoxes) => [...prevDepartureBoxes, ""]);
-  };
-
-  const handleDeleteDepartureBox = (index: number) => {
-    console.log(index);
-    setDepartureBoxes((prevDepartureBoxes) =>
-      prevDepartureBoxes.filter((_, i) => i !== index)
-    );
-  };
+  useEffect(() => {
+    const hasEmptyDepartureBox = departureBoxes.some((box) => box === "");
+    setRecommendBtnDisabled(hasEmptyDepartureBox);
+  }, [departureBoxes]);
 
   return (
     <Container>
       <ImageContainer>
         <Icons.SvgElement.startImage />
-        <Icons.SvgElement.togetherAddImage onClick={handleAddDepartureBox} />
+        <Icons.SvgElement.togetherAddImage />
       </ImageContainer>
       <DepartureContainer>
         {departureBoxes.map((departureBox, index) =>
           index < 2 ? (
-            <DepartureBox key={index}>
-              <GBText body03>{departureBox}</GBText>
-            </DepartureBox>
+            departureBox === "" ? (
+              <EmptyDepartureBox
+                key={index}
+                onClick={() => router.push(`/searchAddress/${index}`)}
+              >
+                <GBText body04 color="#9E9E9E">
+                  {"어디서 출발함?"}
+                </GBText>
+              </EmptyDepartureBox>
+            ) : (
+              <DepartureBox
+                key={index}
+                onClick={() => router.push(`/searchAddress/${index}`)}
+              >
+                <GBText body03>{departureBox}</GBText>
+              </DepartureBox>
+            )
+          ) : departureBox === "" ? (
+            <DeleteDepartureContainer key={index}>
+              <EmptyNewDepartureBox
+                onClick={() => router.push(`/searchAddress/${index}`)}
+              >
+                <GBText body04 color="#9E9E9E">
+                  {"어디서 출발함?"}
+                </GBText>
+              </EmptyNewDepartureBox>
+              <Icons.SvgElement.deleteIcon
+                onClick={() => handleDeleteBox(index)}
+              />
+            </DeleteDepartureContainer>
           ) : (
             <DeleteDepartureContainer key={index}>
               <NewDepartureBox>
                 <GBText body03>{departureBox}</GBText>
               </NewDepartureBox>
               <Icons.SvgElement.deleteIcon
-                onClick={() => handleDeleteDepartureBox(index)}
+                onClick={() => handleDeleteBox(index)}
               />
             </DeleteDepartureContainer>
           )
@@ -50,10 +87,14 @@ function RandomTabContainer(): React.ReactElement {
       </DepartureContainer>
       <BoxContainer>
         <ButtonContainer>
-          <Icons.SvgElement.departureAddIcon />
+          <Icons.SvgElement.departureAddIcon onClick={handleAddBox} />
         </ButtonContainer>
         <ButtonContainer>
-          <Icons.SvgElement.recommendBtnImage />
+          {isRecommendBtnDisabled ? (
+            <Icons.SvgElement.disabledRecommendBtnImage />
+          ) : (
+            <Icons.SvgElement.recommendBtnImage />
+          )}
         </ButtonContainer>
       </BoxContainer>
     </Container>
@@ -127,6 +168,17 @@ const DepartureBox = styled(DepartureCommon)`
   margin-bottom: 20px;
 `;
 
+const EmptyDepartureBox = styled(DepartureCommon)`
+  border: 1.5px solid #dbdbdb;
+  margin-bottom: 20px;
+`;
+
+const EmptyNewDepartureBox = styled(DepartureCommon)`
+  border: 1.5px solid #dbdbdb;
+  width: calc(100% - 40px);
+  margin-right: 8px;
+`;
+
 const NewDepartureBox = styled(DepartureCommon)`
   width: calc(100% - 40px);
   margin-right: 8px;
@@ -141,4 +193,4 @@ const DeleteDepartureContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default React.memo(RandomTabContainer);
+export default React.memo(RecommendTabContainer);

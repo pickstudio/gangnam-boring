@@ -16,6 +16,7 @@ export default function Home() {
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
   const [innerHeight, setInnerHeight] = useState<number>(0);
+  const [departureBoxes, setDepartureBoxes] = useState<string[]>([""]);
 
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -58,6 +59,16 @@ export default function Home() {
     shareLink();
   };
 
+  const handleAddDepartureBox = () => {
+    setDepartureBoxes((prevDepartureBoxes) => [...prevDepartureBoxes, ""]);
+  };
+
+  const handleDeleteDepartureBox = (index: number) => {
+    setDepartureBoxes((prevDepartureBoxes) =>
+      prevDepartureBoxes.filter((_, i) => i !== index)
+    );
+  };
+
   return (
     <React.Fragment>
       <Head>
@@ -93,7 +104,11 @@ export default function Home() {
           {currentTab === 0 ? (
             <RandomTabContainer />
           ) : (
-            <RecommendTabContainer />
+            <RecommendTabContainer
+              departureBoxes={departureBoxes}
+              handleAddBox={handleAddDepartureBox}
+              handleDeleteBox={handleDeleteDepartureBox}
+            />
           )}
           <Footer />
         </Container>
