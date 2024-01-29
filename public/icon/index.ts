@@ -22,6 +22,8 @@ import TogetherAddImage from "./img_togetherAdd.svg";
 import DepartureAddIcon from "./ic_departureAdd.svg";
 import RecommendBtnImage from "./img_recommendBtn.svg";
 import StartImage from "./img_start.svg";
+import DeleteIcon from "./ic_delete.svg";
+import DisabledRecommendBtnImage from "./img_disabledRecommendBtn.svg";
 
 // Tab
 import YellowArrowIcon from "./ic_yellowArrow.svg";
@@ -70,7 +72,9 @@ export const Icons = {
     togetherAddImage: TogetherAddImage,
     departureAddIcon: DepartureAddIcon,
     recommendBtnImage: RecommendBtnImage,
+    disabledRecommendBtnImage: DisabledRecommendBtnImage,
     startImage: StartImage,
+    deleteIcon: DeleteIcon,
 
     // Header
     uploadIcon: UploadIcon,

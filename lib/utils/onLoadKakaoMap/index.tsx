@@ -15,6 +15,7 @@ import MapMarker from "../../../public/icon/ic_upload.svg";
 import { MAP_COLOR_CONFIG } from "@/config";
 
 const handleMapOption = (centerLatLng: ILatLng) => {
+  if (typeof window === "undefined") return;
   const container = document.getElementById("map");
   const options = {
     center: new window.kakao.maps.LatLng(
