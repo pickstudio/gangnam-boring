@@ -15,6 +15,8 @@ import GBLayout from "@/components/base/GBLayout";
 import { getAddr } from "@/lib/utils/searchAdress";
 import { AddressType } from "@/interface/api/address";
 import { GBText } from "@/components/base";
+import { Images } from "@/public/images";
+import Image from "next/image";
 
 export default function SearchAddress() {
   const [addressList, setAddressList] = useState<AddressType[]>([]);
@@ -87,7 +89,12 @@ export default function SearchAddress() {
             </ButtonContainer>
           ) : (
             <ImageContainer>
-              <ImageA />
+              <Image
+                src={Images.emptyResult}
+                alt={"검색 결과 없음"}
+                width={132}
+                height={132}
+              />
             </ImageContainer>
           )}
         </ContentContainer>
@@ -146,17 +153,9 @@ const TextContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  display: flex;
+  width: 100%;
   height: 100%;
-  position: relative;
-`;
-
-const ImageA = styled.div`
-  width: 132px;
-  height: 132px;
-  background-color: #24ff0033;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
