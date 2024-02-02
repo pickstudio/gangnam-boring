@@ -8,9 +8,10 @@ import { AddressType } from "@/interface/api/address";
 
 interface PropsType {
   addressList: AddressType[];
+  onClickSubmit: () => void;
 }
 
-function AddressResultContainer({ addressList }: PropsType) {
+function AddressResultContainer({ addressList, onClickSubmit }: PropsType) {
   if (!addressList) return <></>;
 
   return (
@@ -21,6 +22,7 @@ function AddressResultContainer({ addressList }: PropsType) {
             key={`${item.bdNm}-${idx}`}
             mainAddress={item.bdNm}
             detailAddress={item.roadAddr}
+            onClickSubmit={onClickSubmit}
           />
         );
       })}

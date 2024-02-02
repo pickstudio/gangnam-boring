@@ -7,11 +7,16 @@ import { Icons } from "@/public/icon";
 interface IProps {
   mainAddress: string;
   detailAddress: string;
+  onClickSubmit: () => void;
 }
 
-function AddressResultBar({ mainAddress, detailAddress }: IProps) {
+function AddressResultBar({
+  mainAddress,
+  detailAddress,
+  onClickSubmit,
+}: IProps) {
   return (
-    <Container>
+    <Container onClick={onClickSubmit}>
       <Icons.SvgElement.locationIcon />
       <TextContainer>
         <GBText body01>{mainAddress}</GBText>

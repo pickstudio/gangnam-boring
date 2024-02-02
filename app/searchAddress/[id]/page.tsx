@@ -1,6 +1,8 @@
 "use client";
 
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import Head from "next/head";
 
@@ -16,9 +18,10 @@ import { getAddr } from "@/lib/utils/searchAdress";
 import { AddressType } from "@/interface/api/address";
 import { GBText } from "@/components/base";
 import { Images } from "@/public/images";
-import Image from "next/image";
 
 export default function SearchAddress() {
+  const router = useRouter();
+
   const [addressList, setAddressList] = useState<AddressType[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
 
@@ -50,6 +53,14 @@ export default function SearchAddress() {
     else setHasBottomBorder(false);
   };
 
+  const submitAddress = () => {};
+
+  const goBack = () => router.back();
+
+  const onClickSubmit = () => {
+    goBack();
+  };
+
   useEffect(() => {
     resultContainerRef.current?.addEventListener("scroll", handleScrollView);
     return () =>
@@ -76,7 +87,10 @@ export default function SearchAddress() {
           </InputBarContainer>
           {addressList && Number(addressList.length) !== 0 ? (
             <ResultContainer ref={resultContainerRef}>
-              <AddressResultContainer addressList={addressList} />
+              <AddressResultContainer
+                addressList={addressList}
+                onClickSubmit={onClickSubmit}
+              />
             </ResultContainer>
           ) : searchKeyword === "" ? (
             <ButtonContainer>
