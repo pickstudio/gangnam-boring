@@ -1,6 +1,8 @@
 "use client";
 
 import { ThemeProvider } from "styled-components";
+import { RecoilRoot } from "recoil";
+
 import RootStyleRegistry from "../lib/utils/server/RootStyleRegistry";
 import ThemeConfig from "../config/styles/theme";
 
@@ -14,9 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <RootStyleRegistry>
-          <ThemeProvider theme={ThemeConfig}>{children}</ThemeProvider>
-        </RootStyleRegistry>
+        <RecoilRoot>
+          <RootStyleRegistry>
+            <ThemeProvider theme={ThemeConfig}>{children}</ThemeProvider>
+          </RootStyleRegistry>
+        </RecoilRoot>
       </body>
     </html>
   );

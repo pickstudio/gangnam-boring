@@ -1,22 +1,30 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 import Head from "next/head";
 import styled, { keyframes } from "styled-components";
 
-import GBLayout from "@/components/base/GBLayout";
 import { Icons } from "@/public/icon";
-import DirectionButton from "../components/home/DirectionButton";
-import MenuTab from "@/components/home/MenuTab";
+
 import RandomTabContainer from "@/container/RandomTabContainer";
 import RecommendTabContainer from "@/container/RecommendTabContainer";
+
+import GBLayout from "@/components/base/GBLayout";
+import DirectionButton from "../components/home/DirectionButton";
+import MenuTab from "@/components/home/MenuTab";
 import Footer from "@/components/base/Footer";
+
+import { DepartureListState } from "@/store/atoms";
+import { AddressType } from "@/interface/api/address";
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
   const [innerHeight, setInnerHeight] = useState<number>(0);
   const [departureBoxes, setDepartureBoxes] = useState<string[]>([""]);
+
+  const [departureList, setDepartureList] = useRecoilState(DepartureListState);
 
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -59,16 +67,6 @@ export default function Home() {
     shareLink();
   };
 
-  const handleAddDepartureBox = () => {
-    setDepartureBoxes((prevDepartureBoxes) => [...prevDepartureBoxes, ""]);
-  };
-
-  const handleDeleteDepartureBox = (index: number) => {
-    setDepartureBoxes((prevDepartureBoxes) =>
-      prevDepartureBoxes.filter((_, i) => i !== index)
-    );
-  };
-
   return (
     <React.Fragment>
       <Head>
@@ -104,11 +102,7 @@ export default function Home() {
           {currentTab === 0 ? (
             <RandomTabContainer />
           ) : (
-            <RecommendTabContainer
-              departureBoxes={departureBoxes}
-              handleAddBox={handleAddDepartureBox}
-              handleDeleteBox={handleDeleteDepartureBox}
-            />
+            <RecommendTabContainer />
           )}
           <Footer />
         </Container>

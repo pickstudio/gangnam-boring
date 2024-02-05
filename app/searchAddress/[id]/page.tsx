@@ -3,6 +3,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
 
 import Head from "next/head";
 
@@ -18,21 +19,30 @@ import { getAddr } from "@/lib/utils/searchAdress";
 import { AddressType } from "@/interface/api/address";
 import { GBText } from "@/components/base";
 import { Images } from "@/public/images";
+import { DepartureListState } from "@/store/atoms";
 
-export default function SearchAddress() {
+interface IProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function SearchAddress({ params }: IProps) {
   const router = useRouter();
 
-  const [addressList, setAddressList] = useState<AddressType[]>([]);
+  const [searchAddressList, setSearchAddressList] = useState<AddressType[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
 
   const [hasBottomBorder, setHasBottomBorder] = useState<boolean>(false);
+
+  const [departureList, setDepartureList] = useRecoilState(DepartureListState);
 
   const resultContainerRef = useRef<HTMLDivElement>(null);
 
   const handleAddressList = async (keyword: string) => {
     const response = await getAddr(keyword);
 
-    setAddressList(response);
+    setSearchAddressList(response);
   };
 
   const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +52,7 @@ export default function SearchAddress() {
 
   const clearSearchKeyword = () => {
     setSearchKeyword("");
-    setAddressList([]);
+    setSearchAddressList([]);
   };
 
   const handlePosition = () => {};
@@ -53,11 +63,20 @@ export default function SearchAddress() {
     else setHasBottomBorder(false);
   };
 
-  const submitAddress = () => {};
+  const submitAddress = (currentAddress: AddressType) => {
+    const currentId = Number(params.id);
+
+    setDepartureList((prev) => [
+      ...prev.slice(0, currentId),
+      { id: currentId, address: currentAddress },
+      ...prev.slice(currentId + 1),
+    ]);
+  };
 
   const goBack = () => router.back();
 
-  const onClickSubmit = () => {
+  const onClickSubmit = (currentAddress: AddressType) => {
+    submitAddress(currentAddress);
     goBack();
   };
 
@@ -77,7 +96,7 @@ export default function SearchAddress() {
       </Head>
       <GBLayout header headerLeftIcon>
         <ContentContainer>
-          <InputBarContainer hasBottomBorder={hasBottomBorder}>
+          <InputBarContainer $hasBottomBorder={hasBottomBorder}>
             <AddressInputBar
               placeHolder="지번, 도로명, 건물명으로 검색"
               value={searchKeyword}
@@ -85,10 +104,10 @@ export default function SearchAddress() {
               clearSearchKeyword={clearSearchKeyword}
             />
           </InputBarContainer>
-          {addressList && Number(addressList.length) !== 0 ? (
+          {searchAddressList && Number(searchAddressList.length) !== 0 ? (
             <ResultContainer ref={resultContainerRef}>
               <AddressResultContainer
-                addressList={addressList}
+                addressList={searchAddressList}
                 onClickSubmit={onClickSubmit}
               />
             </ResultContainer>
@@ -124,11 +143,11 @@ const ContentContainer = styled.div`
   overflow: hidden;
 `;
 
-const InputBarContainer = styled.div<{ hasBottomBorder: boolean }>`
+const InputBarContainer = styled.div<{ $hasBottomBorder: boolean }>`
   width: 100%;
   padding: 16px 20px 16px;
   box-sizing: border-box;
-  ${(props) => props.hasBottomBorder && "border-bottom: 1px solid #dbdbdb"};
+  ${(props) => props.$hasBottomBorder && "border-bottom: 1px solid #dbdbdb"};
 `;
 
 const ResultContainer = styled.div`
