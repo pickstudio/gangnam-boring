@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
 import { Icons } from "@/public/icon";
-import { HEADER_CONFIG } from "@/config";
+import { handleHeaderConfig, HEADER_CONFIG } from "@/config";
 import { GBText } from "@/components/base";
 
 export interface IProps {
@@ -29,15 +29,7 @@ function Header({
   const pathname = usePathname();
   const router = useRouter();
 
-  const basicPath = pathname
-    .split("/")
-    .map((item) => {
-      if (item === "") return;
-      return `/${item}`;
-    })
-    .join("");
-
-  const title = HEADER_CONFIG[basicPath]?.name ?? "";
+  const title = handleHeaderConfig(pathname)?.name ?? "";
 
   const goBack = () => router.back();
 

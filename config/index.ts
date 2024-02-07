@@ -2,16 +2,41 @@ type PathLinkType = {
   name: string;
 };
 
-type HeaderConfigType = {
+type SecondPathLinkType = {
   [key in string]: PathLinkType;
+};
+
+type HeaderConfigType = {
+  [key in string]: PathLinkType | SecondPathLinkType;
 };
 
 export const HEADER_CONFIG: HeaderConfigType = {
   "/": { name: "강남은 지루해" },
   "/searchAddress": { name: "출발지 검색" },
   "/midPoint": { name: "중간장소" },
-  "/policy/term": { name: "이용약관" },
-  "/policy/privacy": { name: "개인정보 처리방침" },
+  "/policy": {
+    "/term": { name: "이용약관" },
+    "/privacy": { name: "개인정보 처리방침" },
+  },
+};
+
+export const handleHeaderConfig = (pathname: string) => {
+  const basicPath = "/" + pathname.split("/")[1];
+  const secondPath = "/" + pathname.split("/")[2];
+
+  let headerConfig: PathLinkType | undefined;
+
+  if (HEADER_CONFIG[basicPath]?.name) {
+    headerConfig = HEADER_CONFIG[basicPath] as PathLinkType;
+  } else if (
+    (HEADER_CONFIG[basicPath] as SecondPathLinkType)[secondPath]?.name
+  ) {
+    headerConfig = (HEADER_CONFIG[basicPath] as SecondPathLinkType)[secondPath];
+  } else {
+    headerConfig = undefined;
+  }
+
+  return headerConfig;
 };
 
 export const MAP_COLOR_CONFIG = [
