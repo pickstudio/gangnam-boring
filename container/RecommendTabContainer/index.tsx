@@ -41,10 +41,6 @@ function RecommendTabContainer(): React.ReactElement {
     [departureList]
   );
 
-  const navigateToSearchAddress = (index: number) => {
-    router.push(`/searchAddress/${index}`);
-  };
-
   useEffect(() => {
     setUrl(location.href);
   }, []);
@@ -64,9 +60,7 @@ function RecommendTabContainer(): React.ReactElement {
               key={`${item.address.roadAddr}-${index}`}
               departure={item.address.roadAddr}
               canDelete={canDelete}
-              onClick={() => {
-                navigateToSearchAddress(index);
-              }}
+              href={`/searchAddress/${index}`}
               onClickDelete={() => {
                 deleteDeparture(index);
               }}
