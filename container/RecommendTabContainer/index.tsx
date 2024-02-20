@@ -13,7 +13,13 @@ import { DepartureListState } from "@/store/atoms";
 import { AddressType } from "@/interface/api/address";
 import DepartureBar from "@/components/bar/DepartureBar";
 
-function RecommendTabContainer(): React.ReactElement {
+type PropsType = {
+  handlePageData: () => void;
+};
+
+function RecommendTabContainer({
+  handlePageData,
+}: PropsType): React.ReactElement {
   const router = useRouter();
 
   const [url, setUrl] = useState<string>("");
@@ -41,6 +47,15 @@ function RecommendTabContainer(): React.ReactElement {
     [departureList]
   );
 
+  const navigateToSearchAddress = (index: number) => {
+    router.push(`/searchAddress/${index}`);
+  };
+
+  const onClickDepartureBar = (index: number) => {
+    handlePageData();
+    navigateToSearchAddress(index);
+  };
+
   useEffect(() => {
     setUrl(location.href);
   }, []);
@@ -60,7 +75,9 @@ function RecommendTabContainer(): React.ReactElement {
               key={`${item.address.roadAddr}-${index}`}
               departure={item.address.roadAddr}
               canDelete={canDelete}
-              href={`/searchAddress/${index}`}
+              onClickBar={() => {
+                onClickDepartureBar(index);
+              }}
               onClickDelete={() => {
                 deleteDeparture(index);
               }}

@@ -8,16 +8,21 @@ import styled from "styled-components";
 interface IProps {
   departure: string;
   canDelete: boolean;
-  href: string;
   onClickDelete: () => void;
+  onClickBar: () => void;
 }
 
-function DepartureBar({ departure, canDelete, href, onClickDelete }: IProps) {
+function DepartureBar({
+  departure,
+  canDelete,
+  onClickDelete,
+  onClickBar,
+}: IProps) {
   const isEmpty = !departure;
 
   return (
     <BarContainer>
-      <Container $isEmpty={isEmpty} href={href}>
+      <Container $isEmpty={isEmpty} onClick={onClickBar}>
         <GBText body04 color={isEmpty ? "#9E9E9E" : "#000000"}>
           {isEmpty ? "어디서 출발함?" : departure}
         </GBText>
@@ -39,7 +44,7 @@ const BarContainer = styled.div`
   overflow: visible;
 `;
 
-const Container = styled(Link)<{ $isEmpty: boolean }>`
+const Container = styled.div<{ $isEmpty: boolean }>`
   display: flex;
   flex: 1;
   min-height: 48px;

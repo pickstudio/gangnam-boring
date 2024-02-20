@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+
 import Head from "next/head";
+import { usePathname, useRouter } from "next/navigation";
 import styled, { keyframes } from "styled-components";
 
 import { Icons } from "@/public/icon";
@@ -15,16 +16,18 @@ import DirectionButton from "../components/home/DirectionButton";
 import MenuTab from "@/components/home/MenuTab";
 import Footer from "@/components/base/Footer";
 
-import { DepartureListState } from "@/store/atoms";
-import { AddressType } from "@/interface/api/address";
+import usePageState from "@/lib/hook/useSetRouterPush";
 
 export default function Home() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { getPageState, setPageState } = usePageState();
+
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
   const [innerHeight, setInnerHeight] = useState<number>(0);
-  const [departureBoxes, setDepartureBoxes] = useState<string[]>([""]);
 
-  const [departureList, setDepartureList] = useRecoilState(DepartureListState);
+  const currentPath = "/" + pathname.split("/")[1];
 
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -61,11 +64,36 @@ export default function Home() {
     }
   }, []);
 
+  const handlePageData = () => {
+    const currentData = {
+      pathName: currentPath,
+      scrollPosition: {
+        scrollX: contentContainerRef.current?.scrollLeft ?? 0,
+        scrollY: contentContainerRef.current?.scrollTop ?? 0,
+      },
+      state: {
+        currentTab: currentTab,
+      },
+    };
+    setPageState(currentData);
+  };
+
   const shareLink = () => {};
 
   const onClickHeaderRightIcon = () => {
     shareLink();
   };
+
+  useLayoutEffect(() => {
+    const data = getPageState();
+    if (data) {
+      setCurrentTab(data.state.currentTab);
+      contentContainerRef.current?.scrollTo({
+        left: data.scrollPosition.scrollX,
+        top: data.scrollPosition.scrollY,
+      });
+    }
+  }, [pathname]);
 
   return (
     <React.Fragment>
@@ -102,7 +130,7 @@ export default function Home() {
           {currentTab === 0 ? (
             <RandomTabContainer />
           ) : (
-            <RecommendTabContainer />
+            <RecommendTabContainer handlePageData={handlePageData} />
           )}
           <Footer />
         </Container>

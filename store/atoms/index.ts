@@ -14,3 +14,21 @@ export const DepartureListState: RecoilState<IDepartureListStateProps[]> = atom(
     ] as IDepartureListStateProps[],
   }
 );
+
+type ScrollPositionProps = {
+  scrollX: number;
+  scrollY: number;
+};
+
+export type PageDataProps = {
+  pathName: string;
+  scrollPosition: ScrollPositionProps;
+  state: {
+    [key in string]: any;
+  };
+};
+
+export const PageDataState: RecoilState<PageDataProps[]> = atom({
+  key: "PageData",
+  default: [] as PageDataProps[],
+});
