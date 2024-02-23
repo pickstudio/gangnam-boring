@@ -1,2 +1,4 @@
-export * as address from "./address";
-export * as midPoint from "./midPoint";
+export * from "./address";
+export * from "./midPoint";
+export * from "./match";
+export * from "./uniqueSession";

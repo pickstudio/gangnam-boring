@@ -1,3 +1,13 @@
+import {
+  ICreateUniqueSessionPayload,
+  ICreateUniqueSessionResponse,
+  IGetMatchSessionIdResponse,
+  IGetMatchSessionPayload,
+  IGetUniqueSessionPayload,
+  IGetUniqueSessionResponse,
+  IUpdateUniqueSessionPayload,
+  IUpdateUniqueSessionResponse,
+} from "@/interface/api";
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { GBApi } from "./GBApi";
 
@@ -19,6 +29,38 @@ export default class ApiService implements GBApi {
   public getRandomStation = async () => {
     const data = await this.axiosInstance.get("api/random-station");
     return data;
+  };
+
+  public getMatchSessionId = async (
+    payload: IGetMatchSessionPayload
+  ): Promise<IGetMatchSessionIdResponse> => {
+    const data = await this.axiosInstance.get(`api/match/${payload.sessionId}`);
+
+    return data.data;
+  };
+
+  public getUniqueSession = async (
+    payload: IGetUniqueSessionPayload
+  ): Promise<IGetUniqueSessionResponse> => {
+    const data = await this.axiosInstance.post(`api/unique`, payload);
+
+    return data.data;
+  };
+
+  public updateUniqueSession = async (
+    payload: IUpdateUniqueSessionPayload
+  ): Promise<IUpdateUniqueSessionResponse> => {
+    const data = await this.axiosInstance.post(`api/unique`, payload);
+
+    return data.data;
+  };
+
+  public createUniqueSession = async (
+    payload: ICreateUniqueSessionPayload
+  ): Promise<ICreateUniqueSessionResponse> => {
+    const data = await this.axiosInstance.post(`api/unique`, payload);
+
+    return data.data;
   };
 
   async get<T>(url: string): Promise<T> {
