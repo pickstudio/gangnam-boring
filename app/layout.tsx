@@ -7,6 +7,7 @@ import RootStyleRegistry from "../lib/utils/server/RootStyleRegistry";
 import ThemeConfig from "../config/styles/theme";
 
 import "../styles/reset.css";
+import PopUpProvider from "@/lib/context/PopupContext";
 
 export default function RootLayout({
   children,
@@ -18,7 +19,9 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <RecoilRoot>
           <RootStyleRegistry>
-            <ThemeProvider theme={ThemeConfig}>{children}</ThemeProvider>
+            <ThemeProvider theme={ThemeConfig}>
+              <PopUpProvider>{children}</PopUpProvider>
+            </ThemeProvider>
           </RootStyleRegistry>
         </RecoilRoot>
       </body>

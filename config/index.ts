@@ -1,3 +1,5 @@
+export * from "./popup";
+
 type PathLinkType = {
   name: string;
 };

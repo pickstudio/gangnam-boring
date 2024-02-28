@@ -6,7 +6,8 @@ import styled from "styled-components";
 
 import { GBLayout, GBText } from "@/components/base";
 import { TERM_POLICY } from "@/config";
-import { Images } from "@/public/images";
+
+import { Icons } from "@/public/icon";
 
 export default function Term() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export default function Term() {
           })}
           {hasBorder && (
             <GoToTopButton onClick={scrollToTop}>
-              <Images.topArrow />
+              <Icons.SvgElement.topArrow />
             </GoToTopButton>
           )}
         </Container>

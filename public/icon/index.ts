@@ -50,6 +50,8 @@ import leftArrowIcon from "./ic_leftArrow.svg";
 import LocationIcon from "./ic_location.svg";
 import CurrentLocationIcon from "./ic_currentLocation.svg";
 
+import TopArrow from "./ic_top_arrow.svg";
+
 export const Icons = {
   SvgElement: {
     // Main
@@ -103,5 +105,7 @@ export const Icons = {
     tagIcon: TagIcon,
     locationIcon: LocationIcon,
     currentLocationIcon: CurrentLocationIcon,
+
+    topArrow: TopArrow,
   },
 };

@@ -12,6 +12,9 @@ import { Icons } from "@/public/icon";
 import { DepartureListState } from "@/store/atoms";
 import { AddressType } from "@/interface/api/address";
 import DepartureBar from "@/components/bar/DepartureBar";
+import { usePopUpProvider } from "@/lib/context/PopupContext";
+
+import { PopUpConfig } from "@/config";
 
 type PropsType = {
   handlePageData: () => void;
@@ -21,12 +24,15 @@ function RecommendTabContainer({
   handlePageData,
 }: PropsType): React.ReactElement {
   const router = useRouter();
+  const { showPopUp } = usePopUpProvider();
 
   const [url, setUrl] = useState<string>("");
 
   const [departureList, setDepartureList] = useRecoilState(DepartureListState);
 
   const addDeparture = () => {
+    if (departureList.length >= 15) showPopUp(PopUpConfig.limitAddressList);
+
     setDepartureList((prev) => [
       ...prev,
       { id: departureList.length, address: {} as AddressType },
