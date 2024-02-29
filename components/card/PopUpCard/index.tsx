@@ -69,8 +69,3 @@ const ButtonContainer = styled.button`
 `;
 
 const ButtonText = styled(GBText)``;
-
-// CIC, 독립분사, LG 아이들나라 조직 개편
-// PO는 맥락이 많으면 안된다.
-// 아무것도 안바뀔 수 있는지 장담할 수 있는가
-// 개발자는 자유를 꿈꾼다.
