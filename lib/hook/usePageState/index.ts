@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useRecoilState } from "recoil";
 import { PageDataProps, PageDataState } from "@/store/atoms";
 
-export default function usePageState() {
+export const usePageState = () => {
   const pathname = usePathname();
   const [pageData, setPageData] = useRecoilState(PageDataState);
   const pathName = "/" + pathname.split("/")[1];
@@ -30,4 +30,4 @@ export default function usePageState() {
   };
 
   return { getPageState, setPageState };
-}
+};

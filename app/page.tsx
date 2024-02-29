@@ -16,12 +16,14 @@ import DirectionButton from "../components/home/DirectionButton";
 import MenuTab from "@/components/home/MenuTab";
 import Footer from "@/components/base/Footer";
 
-import usePageState from "@/lib/hook/useSetRouterPush";
+import { usePageState } from "@/lib/hook";
+import { useShare } from "@/lib/hook";
 
 export default function Home() {
   const pathname = usePathname();
   const router = useRouter();
   const { getPageState, setPageState } = usePageState();
+  const { shareURI } = useShare();
 
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [shouldShowLogo, setShouldShowLogo] = useState<boolean>(false);
@@ -78,10 +80,12 @@ export default function Home() {
     setPageState(currentData);
   };
 
-  const shareLink = () => {};
-
   const onClickHeaderRightIcon = () => {
-    shareLink();
+    shareURI({
+      url: "www.naver.com",
+      title: "공유할게요",
+      text: "공유할게요",
+    });
   };
 
   useLayoutEffect(() => {
