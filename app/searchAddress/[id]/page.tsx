@@ -73,6 +73,8 @@ export default function SearchAddress({ params }: IProps) {
     ]);
   };
 
+  const hasSearchResult =
+    searchAddressList && Number(searchAddressList.length) !== 0;
   const canSearch = searchKeyword.length > 1;
 
   const goBack = () => router.back();
@@ -89,7 +91,7 @@ export default function SearchAddress({ params }: IProps) {
         "scroll",
         handleScrollView
       );
-  }, []);
+  }, [hasSearchResult]);
 
   return (
     <React.Fragment>
@@ -113,14 +115,15 @@ export default function SearchAddress({ params }: IProps) {
               </InputWarnTextContainer>
             )}
           </InputBarContainer>
-          {searchAddressList && Number(searchAddressList.length) !== 0 ? (
+          {hasSearchResult && (
             <ResultContainer ref={resultContainerRef}>
               <AddressResultContainer
                 addressList={searchAddressList}
                 onClickSubmit={onClickSubmit}
               />
             </ResultContainer>
-          ) : canSearch ? (
+          )}
+          {!hasSearchResult && canSearch && (
             <ImageContainer>
               <Image
                 src={Images.emptyResult}
@@ -129,7 +132,8 @@ export default function SearchAddress({ params }: IProps) {
                 height={132}
               />
             </ImageContainer>
-          ) : (
+          )}
+          {!hasSearchResult && !canSearch && (
             <ButtonContainer>
               <CurrentPositionButton onClick={handlePosition}>
                 <LocationIcon />
