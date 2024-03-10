@@ -191,4 +191,6 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding-bottom: 80px;
 `;

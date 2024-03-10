@@ -23,7 +23,6 @@ function AddressResultContainer({ addressList, onClickSubmit }: PropsType) {
             mainAddress={item.bdNm}
             detailAddress={item.roadAddr}
             onClickSubmit={() => {
-              console.log(item);
               onClickSubmit(item);
             }}
           />
