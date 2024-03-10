@@ -154,24 +154,6 @@ const Container = styled.div`
   padding-top: 22px;
 `;
 
-const moveRight = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(360px);
-  }
-`;
-
-const moveLeft = keyframes`
-   0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-360px);
-  }
-`;
-
 const TitleBox = styled.div``;
 
 const TextContainer = styled.div`
@@ -188,11 +170,14 @@ const ButtonContainer = styled.div`
 `;
 
 const ImageContainer = styled.div<{ $convertHeight: number }>`
+  height: ${(props) =>
+    props.$convertHeight <= 718
+      ? props.$convertHeight / 1.93 - (200 - props.$convertHeight / 3.9)
+      : 372}px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: ${(props) => props.$convertHeight / 48.5}px;
-
-  margin-bottom: 46px;
+  margin-top: 16px;
+  margin-bottom: ${(props) => props.$convertHeight / 13.8}px;
   box-sizing: border-box;
 `;
