@@ -73,6 +73,8 @@ export default function SearchAddress({ params }: IProps) {
     ]);
   };
 
+  const canSearch = searchKeyword.length > 1;
+
   const goBack = () => router.back();
 
   const onClickSubmit = (currentAddress: AddressType) => {
@@ -103,6 +105,13 @@ export default function SearchAddress({ params }: IProps) {
               setValue={onChangeKeyword}
               clearSearchKeyword={clearSearchKeyword}
             />
+            {!canSearch && searchKeyword.length !== 0 && (
+              <InputWarnTextContainer>
+                <GBText caption02 color={"red"}>
+                  {"2글자 이상으로 검색해주세요"}
+                </GBText>
+              </InputWarnTextContainer>
+            )}
           </InputBarContainer>
           {searchAddressList && Number(searchAddressList.length) !== 0 ? (
             <ResultContainer ref={resultContainerRef}>
@@ -111,16 +120,7 @@ export default function SearchAddress({ params }: IProps) {
                 onClickSubmit={onClickSubmit}
               />
             </ResultContainer>
-          ) : searchKeyword === "" ? (
-            <ButtonContainer>
-              <CurrentPositionButton onClick={handlePosition}>
-                <LocationIcon />
-                <TextContainer>
-                  <GBText caption01>{"현재위치로 설정"}</GBText>
-                </TextContainer>
-              </CurrentPositionButton>
-            </ButtonContainer>
-          ) : (
+          ) : canSearch ? (
             <ImageContainer>
               <Image
                 src={Images.emptyResult}
@@ -129,6 +129,15 @@ export default function SearchAddress({ params }: IProps) {
                 height={132}
               />
             </ImageContainer>
+          ) : (
+            <ButtonContainer>
+              <CurrentPositionButton onClick={handlePosition}>
+                <LocationIcon />
+                <TextContainer>
+                  <GBText caption01>{"현재위치로 설정"}</GBText>
+                </TextContainer>
+              </CurrentPositionButton>
+            </ButtonContainer>
           )}
         </ContentContainer>
       </GBLayout>
@@ -193,4 +202,8 @@ const ImageContainer = styled.div`
   justify-content: center;
   box-sizing: border-box;
   padding-bottom: 80px;
+`;
+
+const InputWarnTextContainer = styled.div`
+  margin: 4px 12px;
 `;
