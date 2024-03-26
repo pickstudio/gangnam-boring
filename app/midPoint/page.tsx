@@ -13,6 +13,8 @@ import KakaoMapContainer from "@/container/KakaoMapContainer";
 const transportInfoArray = MidPointDummyResponse;
 
 export default function MidPoint() {
+  const [midPointIndex, setMidPointIndex] = React.useState(0);
+
   return (
     <React.Fragment>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
@@ -20,7 +22,7 @@ export default function MidPoint() {
           {/* @ts-expect-error Server Component */}
           <MidPointListContainer transportInfoArray={transportInfoArray} />
           {/* @ts-expect-error Server Component */}
-          <KakaoMapContainer wayInfo={transportInfoArray[1]} />
+          <KakaoMapContainer wayInfo={transportInfoArray[midPointIndex]} />
         </ContentContainer>
       </GBLayout>
     </React.Fragment>
