@@ -20,7 +20,7 @@ export default function MidPoint() {
           {/* @ts-expect-error Server Component */}
           <MidPointListContainer transportInfoArray={transportInfoArray} />
           {/* @ts-expect-error Server Component */}
-          <KakaoMapContainer wayInfo={transportInfoArray[0]} />
+          <KakaoMapContainer wayInfo={transportInfoArray[1]} />
         </ContentContainer>
       </GBLayout>
     </React.Fragment>

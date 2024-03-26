@@ -1,6 +1,6 @@
 import { MidPointAPIResponseType } from "@/interface/api/midPoint";
 import { onLoadKakaoMap } from "@/lib/utils/onLoadKakaoMap";
-import * as React from "react";
+import React from "react";
 
 import styled from "styled-components";
 
