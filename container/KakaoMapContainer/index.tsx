@@ -9,25 +9,26 @@ interface MidPointListProps {
 }
 
 function KakaoMapContainer({ wayInfo }: MidPointListProps) {
-  if (typeof window === "undefined") return;
 
   const mapScript = document.createElement("script");
 
   mapScript.async = true;
   mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
-  const loadKakaoMap = () => {
+  const loadKakaoMap = React.useCallback(() => {
     onLoadKakaoMap({
       centerLatLng: wayInfo.midPointLatLng,
       waysToStation: wayInfo.waysToStation,
     });
-  };
+  }, [wayInfo]);
+
+  document.head.appendChild(mapScript);
 
   React.useEffect(() => {
-    document.head.appendChild(mapScript);
-
     mapScript.addEventListener("load", loadKakaoMap);
     return () => mapScript.removeEventListener("load", loadKakaoMap);
-  }, []);
+  }, [mapScript, loadKakaoMap]);
+
+  if (typeof window === "undefined") return;
 
   return <MapContainer id="map" />;
 }

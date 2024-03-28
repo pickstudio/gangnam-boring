@@ -106,6 +106,7 @@ function MidPointInfoCard({
 const Container = styled.div<{ width: number }>`
   width: ${props => `${props.width}px`};
   max-height: 254px;
+  max-width: 708px;
   min-height: 154px;
   padding: 20px;
   background: #fff;

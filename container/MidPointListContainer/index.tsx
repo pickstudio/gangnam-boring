@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useRef } from "react";
 import styled from "styled-components";
 
@@ -9,10 +7,12 @@ import { debounce } from "@/lib/hook";
 
 interface MidPointListProps {
   transportInfoArray: MidPointAPIResponseType[];
+  handleMidPointIndex: (index: number) => void;
 }
 
 export default function MidPointListContainer({
   transportInfoArray,
+  handleMidPointIndex,
 }: MidPointListProps) {
   const HorizontalScrollDivRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +34,8 @@ export default function MidPointListContainer({
     const currentQuotient =
       remainder > innerWidth / 2 ? quotient + 1 : quotient;
 
+    handleMidPointIndex(currentQuotient);
+
     HorizontalScrollDivRef.current?.scrollTo({
       left: innerWidth * currentQuotient,
       behavior: "smooth",
@@ -50,7 +52,7 @@ export default function MidPointListContainer({
           <MidPointInfoCard
             title={`${item.midPointStation}-${idx}`}
             timeCost={item.averageTimeCost}
-            onClickShare={() => {}}
+            onClickShare={() => { }}
             transportInfoArray={item.waysToStation}
           />
         </CardContainer>

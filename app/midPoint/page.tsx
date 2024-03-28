@@ -15,12 +15,16 @@ const transportInfoArray = MidPointDummyResponse;
 export default function MidPoint() {
   const [midPointIndex, setMidPointIndex] = React.useState(0);
 
+  const handleMidPointIndex = (index: number) => {
+    setMidPointIndex(index);
+  }
+
   return (
     <React.Fragment>
       <GBLayout header headerLeftIcon={Icons.SvgElement.leftArrowIcon}>
         <ContentContainer>
           {/* @ts-expect-error Server Component */}
-          <MidPointListContainer transportInfoArray={transportInfoArray} />
+          <MidPointListContainer transportInfoArray={transportInfoArray} handleMidPointIndex={handleMidPointIndex} />
           {/* @ts-expect-error Server Component */}
           <KakaoMapContainer wayInfo={transportInfoArray[midPointIndex]} />
         </ContentContainer>
