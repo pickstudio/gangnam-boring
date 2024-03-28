@@ -97,14 +97,8 @@ export const onLoadKakaoMap = ({ centerLatLng, waysToStation }: IProps) => {
 
     waysToStation.map((item, idx) => {
       var customOverlay = handleStartPoint(item.startPointLatLng, idx);
-      var polyline = handleWayLine({
-        startPoint: item.startPointLatLng,
-        endPoint: centerLatLng,
-        index: idx,
-      });
 
       customOverlay.setMap(map);
-      polyline.setMap(map);
     });
   });
 };
